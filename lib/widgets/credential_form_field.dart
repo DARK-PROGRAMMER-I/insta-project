@@ -43,11 +43,11 @@ class CredentialFormField extends StatelessWidget {
             filled: true,
             enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: AppColors.buttonBackgroundColor),
-                borderRadius: BorderRadius.circular(Dimensions.radius30)
+                borderRadius: BorderRadius.circular(Dimensions.radius10)
             ),
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: AppColors.buttonBackgroundColor),
-                borderRadius: BorderRadius.circular(Dimensions.radius30)
+                borderRadius: BorderRadius.circular(Dimensions.radius10)
             )
         ):
 
