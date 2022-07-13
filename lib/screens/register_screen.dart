@@ -75,7 +75,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               ):
                               CircleAvatar(
                                 radius: Dimensions.radius45,
-                                backgroundImage: NetworkImage('https://images.unsplash.com/photo-1657641954438-544dcc35fe39?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1Mnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'),
+                                backgroundImage: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbJLHWeA-NMFC1hod2-twQCb338iUWIlG4pLx56u_CQw&s'),
                               ),
                               Positioned(
                                 // top: -10,
@@ -117,7 +117,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     email: _emailCtr.text,
                                     pass: _passCtr.text,
                                     bio: _bioCtr.text,
-                                    // file: ''
+                                    file: image!
                                 );
                                 print(response);
                                 if(response){
