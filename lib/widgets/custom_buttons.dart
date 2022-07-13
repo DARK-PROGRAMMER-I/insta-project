@@ -36,37 +36,37 @@ class CustomButton extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: Dimensions.width20, vertical: Dimensions.height10),
       child: GestureDetector(
         onTap: onpressed,
-        child: Container(
-          width: Dimensions.pageHeight,
-          height: height == 0 ? Dimensions.height55: height,
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(Dimensions.radius10)
-          ),
-          child: icon == true ? Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(iconData, color: iconColor,),
-                SizedBox(width: Dimensions.width5,),
-                SmallText(
-                      name: text,
-                      bold: bold,
-                      color: textColor,
-                      size: textSize == 0?  Dimensions.height20 : textSize,
-                    ),
-              ],
+        child: InkWell(
+          child: Container(
+            width: Dimensions.pageHeight,
+            height: height == 0 ? Dimensions.height55: height,
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(Dimensions.radius10)
             ),
-          ) :
-
-
-          Center(
-           child: SmallText(
-            name: text,
-            bold: bold,
-            color: textColor,
-            size: textSize == 0?  Dimensions.height20 : textSize,
-          )),
+            child: icon == true ? Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(iconData, color: iconColor,),
+                  SizedBox(width: Dimensions.width5,),
+                  SmallText(
+                        name: text,
+                        bold: bold,
+                        color: textColor,
+                        size: textSize == 0?  Dimensions.height20 : textSize,
+                      ),
+                ],
+              ),
+            ) :
+            Center(
+             child: SmallText(
+              name: text,
+              bold: bold,
+              color: textColor,
+              size: textSize == 0?  Dimensions.height20 : textSize,
+            )),
+          ),
         ),
       ),
     );
