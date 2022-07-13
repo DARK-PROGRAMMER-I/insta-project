@@ -18,6 +18,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController _emailCtr = TextEditingController();
   TextEditingController _nameCtr = TextEditingController();
   TextEditingController _bioCtr = TextEditingController();
+
+  @override
+  void dispose(){
+    super.dispose();
+    _emailCtr.dispose();
+    _passCtr.dispose();
+    _nameCtr.dispose();
+    _bioCtr.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
