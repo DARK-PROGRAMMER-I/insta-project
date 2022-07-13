@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:insta_project/utils/colors.dart';
 import 'package:insta_project/utils/dimensions.dart';
 import 'package:insta_project/widgets/credential_form_field.dart';
+import 'package:insta_project/widgets/custom_buttons.dart';
+import 'package:insta_project/widgets/small_text.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -31,13 +33,46 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: EdgeInsets.symmetric(horizontal: Dimensions.width30),
           child: Column(
             children: [
-              Flexible(child: Container(), flex: 2,),
-              SvgPicture.asset('assets/images/logo.svg', color: AppColors.mainWhiteColor,),
-              CredentialFormField(
-                  text: 'Enter your email',
-                  controller: _emailCtr
-              )
+            Spacer(),
+            SvgPicture.asset('assets/images/logo.svg', color: AppColors.mainWhiteColor,),
+            SingleChildScrollView(
+              child: Form(
+                child: Column(
+                  children: [
+                    CredentialFormField(
+                        text: 'Enter your email',
+                        controller: _emailCtr
+                    ),
+                    CredentialFormField(
+                        text: 'Enter your password',
+                        controller: _passCtr
+                    ),
+                    CustomButton(
+                      text: 'Sign-In',
+                      textColor: AppColors.whiteColor,
+                      bold: true,
+                      onpressed: (){},
+                      color: AppColors.smallTextColor,
+                    ),
+                    SizedBox(height: Dimensions.height20,),
 
+                  ],
+                )
+                ),
+            ),
+              Spacer(),
+              Container(
+                  margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SmallText(name: 'Dont have accout? ', bold: true, color: AppColors.mainWhiteColor,),
+                      TextButton(onPressed: (){}, child: SmallText(name: 'Sign-up', bold: true))
+                    ],
+                  )),
+              SizedBox(
+                height: Dimensions.height30,
+              )
             ],
           ),
         ),

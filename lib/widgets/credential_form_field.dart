@@ -28,10 +28,11 @@ class CredentialFormField extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(
           vertical: Dimensions.height15,
-          horizontal: Dimensions.width30 ),
+          horizontal: Dimensions.width20 ),
       child: TextFormField(
 
         decoration: icon == true ? InputDecoration(
+            contentPadding: EdgeInsets.symmetric(vertical: Dimensions.height10, horizontal: Dimensions.width20),
             suffixIcon: Icon(iconData, color: iconColor,size: Dimensions.icon24,),
             hintText: text,
             hintStyle: TextStyle(
@@ -52,6 +53,7 @@ class CredentialFormField extends StatelessWidget {
         ):
 
         InputDecoration(
+          contentPadding: EdgeInsets.symmetric(vertical: Dimensions.height10, horizontal: Dimensions.width20),
             hintText: text,
             hintStyle: TextStyle(
                 color: AppColors.smallTextColor,
@@ -62,11 +64,11 @@ class CredentialFormField extends StatelessWidget {
             filled: true,
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: AppColors.buttonBackgroundColor),
-              borderRadius: BorderRadius.circular(Dimensions.radius30)
+              borderRadius: BorderRadius.circular(Dimensions.radius10)
             ),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: AppColors.buttonBackgroundColor),
-              borderRadius: BorderRadius.circular(Dimensions.radius30)
+              borderRadius: BorderRadius.circular(Dimensions.radius10)
             )
         ),
       ),

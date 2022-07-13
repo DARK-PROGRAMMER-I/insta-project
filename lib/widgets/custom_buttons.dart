@@ -33,15 +33,15 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: Dimensions.width30, vertical: Dimensions.height15),
+      padding: EdgeInsets.symmetric(horizontal: Dimensions.width20, vertical: Dimensions.height10),
       child: GestureDetector(
         onTap: onpressed,
         child: Container(
           width: Dimensions.pageHeight,
-          height: height == 0 ? Dimensions.height65: height,
+          height: height == 0 ? Dimensions.height55: height,
           decoration: BoxDecoration(
             color: color,
-            borderRadius: BorderRadius.circular(Dimensions.radius45)
+            borderRadius: BorderRadius.circular(Dimensions.radius10)
           ),
           child: icon == true ? Center(
             child: Row(
