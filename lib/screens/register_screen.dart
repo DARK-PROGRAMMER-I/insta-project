@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:insta_project/controllers/auth_ctr/authentication.dart';
+import 'package:insta_project/screens/login_screen.dart';
 import 'package:insta_project/utils/colors.dart';
 import 'package:insta_project/utils/dimensions.dart';
 import 'package:insta_project/widgets/credential_form_field.dart';
@@ -21,6 +23,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   final _formKey = GlobalKey<FormState>();
 
+  Auth  auth = Auth();
   @override
   void dispose(){
     super.dispose();
@@ -50,6 +53,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SvgPicture.asset('assets/images/logo.svg', color: AppColors.mainWhiteColor,),
+                          SizedBox(height: Dimensions.height30,),
+                          Stack(
+                            children: [
+                              CircleAvatar(
+                                radius: Dimensions.radius45,
+                                backgroundImage: NetworkImage('https://images.unsplash.com/photo-1657641954438-544dcc35fe39?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1Mnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'),
+                              ),
+                              Positioned(
+                                // top: -10,
+                                  bottom: -Dimensions.height10,
+                                  right: -Dimensions.width5,
+                                  child: IconButton(onPressed: (){}, icon: Icon(Icons.add_a_photo))
+                              )
+                              ],
+                          ),
                           // Spacer(),
                           CredentialFormField(
                               text: 'Enter your Name',
@@ -73,9 +91,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             text: 'Sign-up',
                             textColor: AppColors.whiteColor,
                             bold: true,
-                            onpressed: (){
+                            onpressed: ()async{
                               if(_formKey.currentState!.validate()){
-                                print('Invalid Form');
+                                bool response= await auth.signUp(
+                                    name: _nameCtr.value.text,
+                                    email: _emailCtr.text,
+                                    pass: _passCtr.text,
+                                    bio: _bioCtr.text,
+                                    // file: ''
+                                );
+                                print(response);
+                                if(response){
+                                  Navigator.push(context, MaterialPageRoute(builder: (_)=> LoginScreen()));
+                                }
+                              }else{
+                                print('here im ');
                               }
                             },
                             color: AppColors.smallTextColor,
