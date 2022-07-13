@@ -36,12 +36,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
           height: Dimensions.pageHeight,
           width: Dimensions.pageWidth,
           padding: EdgeInsets.symmetric(horizontal: Dimensions.width30),
-          child: Column(
-            children: [
-              Spacer(),
-              SvgPicture.asset('assets/images/logo.svg', color: AppColors.mainWhiteColor,),
-              SingleChildScrollView(
-                child: Form(
+          child: Container(
+            child: Column(
+              children: [
+                Spacer(),
+                SvgPicture.asset('assets/images/logo.svg', color: AppColors.mainWhiteColor,),
+                Form(
                     child: Column(
                       children: [
                         CredentialFormField(
@@ -54,7 +54,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         CredentialFormField(
                             text: 'Enter your password',
-                            controller: _passCtr
+                            controller: _passCtr,
+                          obscure: true,
+                        ),
+                        CredentialFormField(
+                            text: 'Enter your bio',
+                            controller: _bioCtr,
+
                         ),
                         CustomButton(
                           text: 'Sign-up',
@@ -68,21 +74,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ],
                     )
                 ),
-              ),
-              Spacer(),
-              Container(
-                  margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SmallText(name: 'Already have an accout? ', bold: true, color: AppColors.mainWhiteColor,),
-                      TextButton(onPressed: (){}, child: SmallText(name: 'Login', bold: true))
-                    ],
-                  )),
-              SizedBox(
-                height: Dimensions.height30,
-              )
-            ],
+                Spacer(),
+                Container(
+                    margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SmallText(name: 'Already have an accout? ', bold: true, color: AppColors.mainWhiteColor,),
+                        TextButton(onPressed: (){}, child: SmallText(name: 'Login', bold: true))
+                      ],
+                    )),
+                SizedBox(
+                  height: Dimensions.height30,
+                )
+              ],
+            ),
           ),
         ),
       ),

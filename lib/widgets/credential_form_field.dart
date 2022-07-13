@@ -10,6 +10,7 @@ class CredentialFormField extends StatelessWidget {
   final bool icon;
   final IconData iconData;
   final Color iconColor;
+  final bool obscure;
   const CredentialFormField(
       {
         Key? key,
@@ -19,6 +20,7 @@ class CredentialFormField extends StatelessWidget {
         this.icon = false,
         this.iconData = Icons.circle,
         this.iconColor = const Color(0xff212089),
+        this.obscure = false,
 
       })
       : super(key: key);
@@ -30,7 +32,10 @@ class CredentialFormField extends StatelessWidget {
           vertical: Dimensions.height15,
           horizontal: Dimensions.width20 ),
       child: TextFormField(
-
+        style: TextStyle(
+          color: AppColors.blackColor
+        ),
+        obscureText: obscure,
         decoration: icon == true ? InputDecoration(
             contentPadding: EdgeInsets.symmetric(vertical: Dimensions.height10, horizontal: Dimensions.width20),
             suffixIcon: Icon(iconData, color: iconColor,size: Dimensions.icon24,),
@@ -58,7 +63,8 @@ class CredentialFormField extends StatelessWidget {
             hintStyle: TextStyle(
                 color: AppColors.smallTextColor,
                 fontWeight: FontWeight.w400,
-                 fontSize: Dimensions.smallText
+                 fontSize: Dimensions.smallText,
+
             ),
             fillColor: AppColors.buttonBackgroundColor,
             filled: true,
