@@ -9,7 +9,7 @@ class Auth{
 
 
   Future<bool> signUp({required String name, required String email, required String pass,required String bio})async{
-    String response = 'Error signing-up';
+
     try{
       UserCredential creds = await _auth.createUserWithEmailAndPassword(email: email, password: pass);
 
@@ -25,11 +25,19 @@ class Auth{
       print('Success');
       return true;
     }catch(e){
-      response = e.toString();
-      print(response);
+      print(e.toString());
+      print('Error');
     }
-    print(response);
     return false;
+  }
+
+  Future<bool> signIn({required String email, required String pass})async{
+    try{
+      UserCredential creds  = await _auth.signInWithEmailAndPassword(email: email, password: pass);
+      return true;
+    }catch(e){
+      return false;
+    }
   }
 
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:insta_project/controllers/auth_ctr/authentication.dart';
+import 'package:insta_project/screens/home_screen%5D.dart';
 import 'package:insta_project/screens/register_screen.dart';
 import 'package:insta_project/utils/colors.dart';
 import 'package:insta_project/utils/dimensions.dart';
@@ -20,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final _formKey = GlobalKey<FormState>();
 
-
+  Auth auth = Auth();
 
   @override
   void dispose(){
@@ -51,13 +53,22 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     CredentialFormField(
                         text: 'Enter your password',
-                        controller: _passCtr
+                        controller: _passCtr,
+                      obscure: true,
                     ),
                     CustomButton(
                       text: 'Sign-In',
                       textColor: AppColors.whiteColor,
                       bold: true,
-                      onpressed: (){},
+                      onpressed: ()async{
+                        if(_formKey.currentState!.validate()){
+                          bool reponse = await auth.signIn(email: _emailCtr.text, pass: _passCtr.text);
+                          if(reponse){
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login Successfull')));
+                            Navigator.push(context, MaterialPageRoute(builder: (_)=>HomeScreen() ));
+                          }
+                        }
+                      },
                       color: AppColors.smallTextColor,
                     ),
                     SizedBox(height: Dimensions.height20,),

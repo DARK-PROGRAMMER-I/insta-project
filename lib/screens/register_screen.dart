@@ -1,9 +1,13 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:insta_project/controllers/auth_ctr/authentication.dart';
 import 'package:insta_project/screens/login_screen.dart';
 import 'package:insta_project/utils/colors.dart';
 import 'package:insta_project/utils/dimensions.dart';
+import 'package:insta_project/utils/utils.dart';
 import 'package:insta_project/widgets/credential_form_field.dart';
 import 'package:insta_project/widgets/custom_buttons.dart';
 import 'package:insta_project/widgets/small_text.dart';
@@ -20,10 +24,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController _emailCtr = TextEditingController();
   TextEditingController _nameCtr = TextEditingController();
   TextEditingController _bioCtr = TextEditingController();
-
+// Form Key
   final _formKey = GlobalKey<FormState>();
-
+// Auth Class Initiallizaton
   Auth  auth = Auth();
+// Image data
+  Uint8List? image;
+  void setImage()async{
+    Uint8List img = await pickImage(ImageSource.camera);
+    setState((){
+      image = img;
+    });
+  }
   @override
   void dispose(){
     super.dispose();
@@ -58,7 +70,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             children: [
                               CircleAvatar(
                                 radius: Dimensions.radius45,
-                                backgroundImage: NetworkImage('https://images.unsplash.com/photo-1657641954438-544dcc35fe39?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1Mnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'),
+                                backgroundImage: image != null ? image: NetworkImage('https://images.unsplash.com/photo-1657641954438-544dcc35fe39?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1Mnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'),
                               ),
                               Positioned(
                                 // top: -10,
@@ -102,6 +114,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 );
                                 print(response);
                                 if(response){
+                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign-up Successfull')));
                                   Navigator.push(context, MaterialPageRoute(builder: (_)=> LoginScreen()));
                                 }
                               }else{
