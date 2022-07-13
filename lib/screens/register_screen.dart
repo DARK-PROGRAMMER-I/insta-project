@@ -68,9 +68,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           SizedBox(height: Dimensions.height30,),
                           Stack(
                             children: [
+                              image != null ?
                               CircleAvatar(
                                 radius: Dimensions.radius45,
-                                backgroundImage: image != null ? image: NetworkImage('https://images.unsplash.com/photo-1657641954438-544dcc35fe39?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1Mnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'),
+                                backgroundImage: MemoryImage(image!),
+                              ):
+                              CircleAvatar(
+                                radius: Dimensions.radius45,
+                                backgroundImage: NetworkImage('https://images.unsplash.com/photo-1657641954438-544dcc35fe39?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1Mnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'),
                               ),
                               Positioned(
                                 // top: -10,
