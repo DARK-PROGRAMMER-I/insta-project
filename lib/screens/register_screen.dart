@@ -81,7 +81,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 // top: -10,
                                   bottom: -Dimensions.height10,
                                   right: -Dimensions.width5,
-                                  child: IconButton(onPressed: (){}, icon: Icon(Icons.add_a_photo))
+                                  child: IconButton(onPressed: (){
+                                    setImage();
+                                  }, icon: Icon(Icons.add_a_photo))
                               )
                               ],
                           ),
