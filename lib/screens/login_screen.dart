@@ -18,6 +18,8 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _passCtr = TextEditingController();
   TextEditingController _emailCtr = TextEditingController();
 
+  final _formKey = GlobalKey<FormState>();
+
   @override
   void dispose(){
     super.dispose();
@@ -38,6 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
             SvgPicture.asset('assets/images/logo.svg', color: AppColors.mainWhiteColor,),
             SingleChildScrollView(
               child: Form(
+                key: _formKey,
                 child: Column(
                   children: [
                     CredentialFormField(

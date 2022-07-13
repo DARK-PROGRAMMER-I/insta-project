@@ -32,6 +32,7 @@ class CredentialFormField extends StatelessWidget {
           vertical: Dimensions.height15,
           horizontal: Dimensions.width20 ),
       child: TextFormField(
+        validator: (val)=> val!.isEmpty ? 'Fill the field please': null,
         style: TextStyle(
           color: AppColors.blackColor
         ),

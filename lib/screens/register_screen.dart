@@ -19,6 +19,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController _nameCtr = TextEditingController();
   TextEditingController _bioCtr = TextEditingController();
 
+  final _formKey = GlobalKey<FormState>();
+
   @override
   void dispose(){
     super.dispose();
@@ -36,59 +38,69 @@ class _RegisterScreenState extends State<RegisterScreen> {
           height: Dimensions.pageHeight,
           width: Dimensions.pageWidth,
           padding: EdgeInsets.symmetric(horizontal: Dimensions.width30),
-          child: Container(
-            child: Column(
-              children: [
-                Spacer(),
-                SvgPicture.asset('assets/images/logo.svg', color: AppColors.mainWhiteColor,),
-                Form(
-                    child: Column(
-                      children: [
-                        CredentialFormField(
-                            text: 'Enter your Name',
-                            controller: _nameCtr
-                        ),
-                        CredentialFormField(
-                            text: 'Enter your email',
-                            controller: _emailCtr
-                        ),
-                        CredentialFormField(
-                            text: 'Enter your password',
-                            controller: _passCtr,
-                          obscure: true,
-                        ),
-                        CredentialFormField(
-                            text: 'Enter your bio',
-                            controller: _bioCtr,
+          child: Column(
+            children: [
+              Flexible(child: Container(), flex: 1,),
+              Expanded(
+                flex: 6,
+                child: SingleChildScrollView(
+                  child: Form(
+                    key: _formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset('assets/images/logo.svg', color: AppColors.mainWhiteColor,),
+                          // Spacer(),
+                          CredentialFormField(
+                              text: 'Enter your Name',
+                              controller: _nameCtr
+                          ),
+                          CredentialFormField(
+                              text: 'Enter your email',
+                              controller: _emailCtr
+                          ),
+                          CredentialFormField(
+                              text: 'Enter your password',
+                              controller: _passCtr,
+                            obscure: true,
+                          ),
+                          CredentialFormField(
+                              text: 'Enter your bio',
+                              controller: _bioCtr,
 
-                        ),
-                        CustomButton(
-                          text: 'Sign-up',
-                          textColor: AppColors.whiteColor,
-                          bold: true,
-                          onpressed: (){},
-                          color: AppColors.smallTextColor,
-                        ),
-                        SizedBox(height: Dimensions.height20,),
-
-                      ],
-                    )
+                          ),
+                          CustomButton(
+                            text: 'Sign-up',
+                            textColor: AppColors.whiteColor,
+                            bold: true,
+                            onpressed: (){
+                              if(_formKey.currentState!.validate()){
+                                print('Invalid Form');
+                              }
+                            },
+                            color: AppColors.smallTextColor,
+                          ),
+                          SizedBox(height: Dimensions.height20,),
+                          Container(
+                              margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SmallText(name: 'Already have an accout? ', bold: true, color: AppColors.mainWhiteColor,),
+                                  TextButton(onPressed: (){}, child: SmallText(name: 'Login', bold: true))
+                                ],
+                              )),
+                          SizedBox(
+                            height: Dimensions.height30,
+                          )
+                        ],
+                      )
+                  ),
                 ),
-                Spacer(),
-                Container(
-                    margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SmallText(name: 'Already have an accout? ', bold: true, color: AppColors.mainWhiteColor,),
-                        TextButton(onPressed: (){}, child: SmallText(name: 'Login', bold: true))
-                      ],
-                    )),
-                SizedBox(
-                  height: Dimensions.height30,
-                )
-              ],
-            ),
+              ),
+              // Spacer(),
+              Flexible(child: Container(), flex: 1,),
+            ],
           ),
         ),
       ),
