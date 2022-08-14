@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:insta_project/screens/home_screen%5D.dart';
 import 'package:insta_project/screens/login_screen.dart';
 
 class MobileScreen extends StatefulWidget {
@@ -12,6 +11,6 @@ class MobileScreen extends StatefulWidget {
 class _MobileScreenState extends State<MobileScreen> {
   @override
   Widget build(BuildContext context) {
-    return HomeScreen();
+    return LoginScreen();
   }
 }

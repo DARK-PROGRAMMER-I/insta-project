@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:insta_project/controllers/auth_ctr/authentication.dart';
-import 'package:insta_project/screens/home_screen%5D.dart';
+import 'package:insta_project/screens/home_screen.dart';
 import 'package:insta_project/screens/register_screen.dart';
 import 'package:insta_project/utils/colors.dart';
 import 'package:insta_project/utils/dimensions.dart';

@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
       title: 'instagram Clone',
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: mobileBackgroundColor,
+
       ),
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
