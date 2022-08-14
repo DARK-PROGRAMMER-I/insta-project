@@ -64,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         if(_formKey.currentState!.validate()){
                           bool reponse = await auth.signIn(email: _emailCtr.text, pass: _passCtr.text);
                           if(reponse){
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login Successfull')));
+                            // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login Successfull')));
                             Navigator.push(context, MaterialPageRoute(builder: (_)=>HomeScreen() ));
                           }
                         }

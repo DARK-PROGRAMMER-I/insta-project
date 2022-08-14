@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:insta_project/responsive/mobile_screen.dart';
 import 'package:insta_project/responsive/responsive.dart';
 import 'package:insta_project/responsive/web_screen.dart';
+import 'package:insta_project/screens/login_screen.dart';
 import 'package:insta_project/utils/colors.dart';
 
 void main()async {
@@ -35,12 +37,29 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'instagram Clone',
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: mobileBackgroundColor
+        scaffoldBackgroundColor: mobileBackgroundColor,
       ),
-      home: ResponsiveLayout(
-        webScreenLayout: WebScreen(),
-        mobileScreenLayout: MobileScreen(),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snap){
+          if(snap.connectionState == ConnectionState.active){
+            if(snap.hasData){
+              return  ResponsiveLayout(
+                webScreenLayout: WebScreen(),
+                mobileScreenLayout: MobileScreen(),
 
+              );
+            }else if(snap.hasError){
+              return Scaffold(body: Center(child: Text(snap.error.toString()),),);
+            }else{
+              return LoginScreen();
+            }
+          }
+          else if(snap.connectionState == ConnectionState.waiting){
+            return Center(child: CircularProgressIndicator(),);
+          }
+          return LoginScreen();
+        },
       ),
     );
   }

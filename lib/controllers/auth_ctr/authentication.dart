@@ -39,9 +39,8 @@ class Auth{
       UserCredential creds  = await _auth.signInWithEmailAndPassword(email: email, password: pass);
       return true;
     }catch(e){
+      print(e.toString());
       return false;
     }
   }
-
-
 }
