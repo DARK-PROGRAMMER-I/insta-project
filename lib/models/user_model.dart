@@ -1,4 +1,4 @@
-import 'package:insta_project/models/uid.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
   final String? name;
@@ -10,13 +10,13 @@ class UserModel {
   final String ?imgUrl;
 
   UserModel({
-    required this.name,
-    required this.email,
-    required this.bio,
-    required this.uid,
-    required this.followers,
-    required this.folowing,
-    required this.imgUrl,
+    this.name,
+    this.email,
+    this.bio,
+    this.uid,
+    this.followers,
+    this.folowing,
+    this.imgUrl,
   });
 
   Map<String, dynamic> toJson() => {
@@ -28,5 +28,18 @@ class UserModel {
     'following' : [],
     'imgUrl': imgUrl ,
   };
+
+  UserModel fromJson(DocumentSnapshot snapshot){
+    var snap = snapshot.data() as Map<String, dynamic>;
+    return UserModel(
+        name: snap['name'],
+        email: snap['email'],
+        bio: snap['bio'],
+        uid: snap['uid'],
+        followers: snap['followers'],
+        folowing: snap['folowing'],
+        imgUrl: snap['imgUrl']
+    );
+  }
 
 }

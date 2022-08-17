@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:insta_project/screens/home_screen.dart';
 import 'package:insta_project/screens/login_screen.dart';
+import 'package:insta_project/screens/navigation/navigation_screen.dart';
 
 class MobileScreen extends StatefulWidget {
   const MobileScreen({Key? key}) : super(key: key);
@@ -12,6 +13,6 @@ class MobileScreen extends StatefulWidget {
 class _MobileScreenState extends State<MobileScreen> {
   @override
   Widget build(BuildContext context) {
-    return HomeScreen();
+    return NavigationScreen();
   }
 }

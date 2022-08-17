@@ -3,11 +3,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:insta_project/providers/navigation_provider.dart';
+import 'package:insta_project/providers/user/user_provider.dart';
 import 'package:insta_project/responsive/mobile_screen.dart';
 import 'package:insta_project/responsive/responsive.dart';
 import 'package:insta_project/responsive/web_screen.dart';
 import 'package:insta_project/screens/login_screen.dart';
 import 'package:insta_project/utils/colors.dart';
+import 'package:provider/provider.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,34 +36,40 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'instagram Clone',
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: mobileBackgroundColor,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => NavigationProvider()),
+      ],
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'instagram Clone',
+        theme: ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: mobileBackgroundColor,
 
-      ),
-      home: StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snap){
-          if(snap.connectionState == ConnectionState.active){
-            if(snap.hasData){
-              return  ResponsiveLayout(
-                webScreenLayout: WebScreen(),
-                mobileScreenLayout: MobileScreen(),
+        ),
+        home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snap){
+            if(snap.connectionState == ConnectionState.active){
+              if(snap.hasData){
+                return  ResponsiveLayout(
+                  webScreenLayout: WebScreen(),
+                  mobileScreenLayout: MobileScreen(),
 
-              );
-            }else if(snap.hasError){
-              return Scaffold(body: Center(child: Text(snap.error.toString()),),);
-            }else{
-              return LoginScreen();
+                );
+              }else if(snap.hasError){
+                return Scaffold(body: Center(child: Text(snap.error.toString()),),);
+              }else{
+                return LoginScreen();
+              }
             }
-          }
-          else if(snap.connectionState == ConnectionState.waiting){
-            return Center(child: CircularProgressIndicator(),);
-          }
-          return LoginScreen();
-        },
+            else if(snap.connectionState == ConnectionState.waiting){
+              return Center(child: CircularProgressIndicator(),);
+            }
+            return LoginScreen();
+          },
+        ),
       ),
     );
   }
