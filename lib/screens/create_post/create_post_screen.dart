@@ -11,6 +11,7 @@ import '../../utils/dimensions.dart';
 import '../../widgets/big_text.dart';
 
 part 'widgets/post_appbar.dart';
+part 'widgets/image_container.dart';
 class CreatePostScreen extends StatefulWidget {
   const CreatePostScreen({Key? key}) : super(key: key);
 
