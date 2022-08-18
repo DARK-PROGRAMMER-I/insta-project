@@ -2,8 +2,13 @@ part of '../create_post_screen.dart';
 class ImageContainer extends StatelessWidget {
   final File? file;
   final bool isFull;
-  Function()? onTap;
-  ImageContainer({Key? key, this.file , this.isFull = false}) : super(key: key);
+  final Function()? onTap;
+  ImageContainer({
+    Key? key, this.file ,
+    this.isFull = false,
+    this.onTap
+
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

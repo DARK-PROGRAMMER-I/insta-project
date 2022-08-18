@@ -77,8 +77,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
           children: [
             if(imageFile !=  null)
               ImageContainer(
-                file: ,
-
+                file: imageFile,
+                isFull: assets.isEmpty,
+                onTap: fetch_images,
               )
           ],
         ),
