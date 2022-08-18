@@ -8,6 +8,7 @@ import 'package:insta_project/providers/user/user_provider.dart';
 import 'package:insta_project/responsive/mobile_screen.dart';
 import 'package:insta_project/responsive/responsive.dart';
 import 'package:insta_project/responsive/web_screen.dart';
+import 'package:insta_project/screens/create_post/providers/post_provider.dart';
 import 'package:insta_project/screens/login_screen.dart';
 import 'package:insta_project/utils/colors.dart';
 import 'package:provider/provider.dart';
@@ -40,6 +41,8 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => NavigationProvider()),
+        ChangeNotifierProvider(create: (_) => PostProvider()),
+
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
