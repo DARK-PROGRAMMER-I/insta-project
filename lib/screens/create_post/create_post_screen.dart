@@ -124,6 +124,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                               child: Padding(
                                 padding:  EdgeInsets.symmetric(horizontal: Dimensions.width10),
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     DropdownButtonHideUnderline(
                                         child:  DropdownButton(
@@ -137,10 +138,17 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                             );
                                           }).toList(),
                                           onChanged: (value) {
+                                            print(postProvider.getSelected(value as AssetPathEntity));
                                              postProvider.getSelected(value as AssetPathEntity);
+                                             currentFolder = value as AssetPathEntity;
                                           },
                                         )
                                 ),
+                                    IconButton(
+                                        onPressed: takePhoto,
+                                        icon: Icon(Icons.camera_alt)
+                                    )
+
                                   ],
                                 ),
                               ),

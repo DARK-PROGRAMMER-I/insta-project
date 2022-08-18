@@ -5,7 +5,8 @@ class PostProvider with ChangeNotifier{
   AssetPathEntity? _selected;
   AssetPathEntity? get selected => _selected;
   getSelected(AssetPathEntity select){
-    _selected = selected;
+    _selected = select;
     notifyListeners();
+    return select;
   }
 }
