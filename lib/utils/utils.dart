@@ -1,7 +1,10 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:insta_project/utils/colors.dart';
+import 'package:insta_project/utils/dimensions.dart';
 
 pickImage(ImageSource source)async{
   ImagePicker picker = ImagePicker();
@@ -37,5 +40,9 @@ class Utils{
         )
     );
   }
+  static spinKit({Color? color}) => SpinKitRipple(
+    color: color ?? AppColors.redColor,
+    size: Dimensions.height20
+  );
 }
 

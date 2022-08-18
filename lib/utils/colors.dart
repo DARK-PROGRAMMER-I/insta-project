@@ -18,7 +18,7 @@ class AppColors{
   static final Color whiteColor =  Colors.white70 ;
   static final Color mainWhiteColor =  Colors.white ;
   static final Color facebookColor =  const Color(0xff3b5998) ;
-  static final Color googleColor =  const Color(0xfff54141) ;
+  static final Color redColor =  const Color(0xfff54141) ;
 
 
 }

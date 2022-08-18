@@ -30,7 +30,7 @@ class PostAppbar extends StatelessWidget {
             size: Dimensions.icon24,),
           onPressed: (){
             imgFile != null ? Utils.toastMessage('Select atleast 1 image'):
-                EditScreen();
+                EditPostScreen();
           },
         ),
       ],
