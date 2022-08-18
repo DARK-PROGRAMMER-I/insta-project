@@ -19,7 +19,7 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
     super.initState();
   }
   userrefresh()async{
-    await UserProvider().refreshUser();
+    // await UserProvider().refreshUser();
   }
 
   @override
