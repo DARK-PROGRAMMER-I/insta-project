@@ -76,7 +76,10 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         child: Column(
           children: [
             if(imageFile !=  null)
+              ImageContainer(
+                file: ,
 
+              )
           ],
         ),
       )
