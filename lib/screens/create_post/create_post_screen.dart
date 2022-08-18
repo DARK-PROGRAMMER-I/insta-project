@@ -80,7 +80,26 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                 file: imageFile,
                 isFull: assets.isEmpty,
                 onTap: fetch_images,
+              ),
+            if(imageFile == null)
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Center(
+                    child: Image.asset(
+                      GHImages.fullNameIcon,
+                      height: assets.isEmpty
+                          ? screenSize(context).height
+                          : screenSize(context).height / 2,
+                      width: screenSize(context).width,
+                    ),
+                  ),
+                ),
               )
+
+
+
+
           ],
         ),
       )
