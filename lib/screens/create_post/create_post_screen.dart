@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:insta_project/utils/colors.dart';
+import 'package:insta_project/widgets/small_text.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 import '../../utils/dimensions.dart';
+import '../../widgets/big_text.dart';
 
 class CreatePostScreen extends StatefulWidget {
   const CreatePostScreen({Key? key}) : super(key: key);
@@ -64,13 +66,30 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.mobileBackgroundColor,
         leading: IconButton(
           icon: FaIcon(
-            FontAwesomeIcons.cross,
+            FontAwesomeIcons.xmark,
             color: AppColors.mainWhiteColor,
-            size: Dimensions.icon24,),
+            size: Dimensions.icon24,
+          ),
           onPressed: (){},
         ),
+        title: BigText(
+          name: 'New Post',
+          size: Dimensions.bigText,
+          color: AppColors.mainWhiteColor,
+        ),
+        actions: [
+
+          IconButton(
+            icon: Icon(
+              Icons.arrow_forward,
+              color: AppColors.mainWhiteColor,
+              size: Dimensions.icon24,),
+            onPressed: (){},
+          ),
+        ],
       ),
     );
   }

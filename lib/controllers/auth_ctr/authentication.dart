@@ -27,15 +27,15 @@ class Auth{
       print(imgUrl);
       // For storing other info in database
       await _storeRef.doc(creds.user!.uid).set(
-          UserModel(
-            name: name,
-            email: email,
-            bio: bio,
-            uid: creds.user!.uid,
-            followers: [],
-            folowing: [],
-            imgUrl: imgUrl,
-          ).toJson()
+         {
+           'name':name,
+           'email':email,
+           'bio':bio,
+           'uid':creds.user!.uid,
+           'followers':[],
+           'folowing':[],
+           'imgUrl':imgUrl,
+         }
       );
       print('Success');
       return true;

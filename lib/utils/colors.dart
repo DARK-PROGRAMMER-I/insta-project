@@ -8,9 +8,9 @@ const primaryColor = Colors.white;
 const secondaryColor = Colors.grey;
 
 class AppColors{
-  static final Color blackColor = const Color.fromRGBO(0, 0, 0, 1);
+  static final Color mobileBackgroundColor = Color.fromRGBO(0, 0, 0, 1);
   static final Color smallTextColor = const Color(0xffa0a09f);
-  static final Color mainColor = const Color(0xff212089);
+  static final Color blueColor = const Color(0xff212089);
   static final Color primaryColor = const Color(0xff0c4096);
   static final Color buttonBackgroundColor= const Color(0xffeae9e9);
   static final Color lightBackgroundBlue = const Color(0xffd5ebff);

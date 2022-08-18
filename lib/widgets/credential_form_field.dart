@@ -35,7 +35,7 @@ class CredentialFormField extends StatelessWidget {
         validator: (val)=> val!.isEmpty ? 'Fill the field please': null,
         controller: controller,
         style: TextStyle(
-          color: AppColors.blackColor
+          color: AppColors.mobileBackgroundColor
         ),
         obscureText: obscure,
         decoration: icon == true ? InputDecoration(
