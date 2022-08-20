@@ -1,7 +1,9 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 
 class EditPostScreen extends StatefulWidget {
-  const EditPostScreen({Key? key}) : super(key: key);
+  File? imgFile;
+  EditPostScreen({Key? key, required this.imgFile}) : super(key: key);
 
   @override
   State<EditPostScreen> createState() => _EditPostScreenState();

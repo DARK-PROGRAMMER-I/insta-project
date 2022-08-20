@@ -55,12 +55,13 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
       });
     }
   }
-
+XFile ? file;
   takePhoto()async{
     XFile? imgFile = await ImagePicker().pickImage(source: ImageSource.camera);
     if(imgFile != null){
       setState(() {
         imageFile = File(imgFile.path);
+        EditPostScreen(imgFile: imageFile);
       });
     }
 
@@ -153,8 +154,24 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                 ),
                               ),
                             ),
-                            Column(
-
+                            Expanded(
+                              child: Container(
+                                height: Dimensions.pageHeight,
+                                child: GridView.builder(
+                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
+                                  crossAxisSpacing: Dimensions.height20,
+                                  mainAxisSpacing: Dimensions.width20,
+                                ),
+                                    itemBuilder: (context, index){
+                                      return Container(
+                                        color: Colors.deepPurple,
+                                        height: Dimensions.height30,
+                                        width: Dimensions.width30,
+                                      );
+                                    }
+                                    ),
+                              ),
                             ),
                           ],
                         ),
