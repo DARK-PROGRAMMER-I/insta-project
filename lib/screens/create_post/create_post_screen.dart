@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:insta_project/screens/create_post/edit_post_screen.dart';
 import 'package:insta_project/screens/create_post/providers/post_provider.dart';
+import 'package:insta_project/screens/create_post/widgets/crop_image.dart';
 import 'package:insta_project/utils/colors.dart';
 import 'package:insta_project/utils/utils.dart';
 import 'package:photo_manager/photo_manager.dart';
@@ -61,7 +62,6 @@ XFile ? file;
     if(imgFile != null){
       setState(() {
         imageFile = File(imgFile.path);
-        EditPostScreen(imgFile: imageFile);
       });
     }
 
@@ -81,11 +81,24 @@ XFile ? file;
         child: Column(
           children: [
             if(imageFile !=  null)
-              ImageContainer(
-                file: imageFile,
-                isFull: assets.isEmpty,
-                onTap: fetch_images,
-              ),
+              Stack(
+                children : [
+                  ImageContainer(
+                  file: imageFile,
+                  isFull: assets.isEmpty,
+                  onTap: fetch_images,
+                ),
+                  Positioned(
+                    bottom: 0,
+                    left: 30,
+                    child:  GestureDetector(
+                        onTap: ()async{
+                          imageFile = await cropImage(imageFile: imageFile!);
+                        },
+
+                        child: Icon(Icons.crop, color: AppColors.mainWhiteColor, size: Dimensions.icon20,)) ,
+                    ),
+                ]),
             if(imageFile == null)
               Container(
                 child: Padding(

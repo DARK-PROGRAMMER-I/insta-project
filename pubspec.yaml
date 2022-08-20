@@ -44,6 +44,7 @@ dependencies:
   another_flushbar: ^1.10.29
   flutter_spinkit: ^5.1.0
   enough_giphy_flutter: ^0.3.0
+  image_cropper: ^1.4.1
 
 
   # The following adds the Cupertino Icons font to your application.

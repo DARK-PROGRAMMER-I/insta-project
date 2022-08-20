@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class EditPostScreen extends StatefulWidget {
   File? imgFile;
-  EditPostScreen({Key? key, required this.imgFile}) : super(key: key);
+  EditPostScreen({Key? key, this.imgFile}) : super(key: key);
 
   @override
   State<EditPostScreen> createState() => _EditPostScreenState();
@@ -12,6 +12,12 @@ class EditPostScreen extends StatefulWidget {
 class _EditPostScreenState extends State<EditPostScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+
+    );
   }
+
+
+
+
 }
