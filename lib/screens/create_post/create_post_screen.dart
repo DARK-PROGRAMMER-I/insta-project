@@ -17,6 +17,9 @@ import '../../widgets/big_text.dart';
 part 'widgets/post_appbar.dart';
 part 'widgets/image_container.dart';
 part 'widgets/gif_file.dart';
+part 'widgets/crop_icon.dart';
+part 'widgets/loading_gif.dart';
+
 class CreatePostScreen extends StatefulWidget {
   const CreatePostScreen({Key? key}) : super(key: key);
 
@@ -25,20 +28,6 @@ class CreatePostScreen extends StatefulWidget {
 }
 
 class _CreatePostScreenState extends State<CreatePostScreen> {
-  // bool loading  = true;
-  // bool saving = false;
-  // List<AssetEntity> assets = [];
-  // AssetEntity ? selectedAssets;
-  // List<AssetPathEntity> folderList = [];
-  // AssetPathEntity? currentFolder;
-  // File? imageFile;
-
-  @override
-  void initState() {
-    // fetch_images();
-    super.initState();
-  }
-
 
 
   @override
@@ -70,32 +59,12 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                          postProvider.getImageFile(file!);
                         },
 
-                        child: Container(
-                          width: Dimensions.width30,
-                          height: Dimensions.height30,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColors.mainWhiteColor.withOpacity(0.3),
-
-                          ),
-                            child: Icon(
-                              Icons.crop, color: AppColors.mainWhiteColor, size: Dimensions.icon20,
-                            )
-                        )
+                        child: CropIcon()
                     ) ,
                     ),
                 ]),
             if(postProvider.imageFile == null)
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Center(
-                    child: Image(
-                      image: NetworkImage('https://th.bing.com/th/id/R.60e72028b41866ae64c5bd4711f81474?rik=5ed1XByDSyID5A&pid=ImgRaw&r=0'),
-                    ),
-                  ),
-                ),
-              ),
+              LoadingGif(),
             if(postProvider.imageList.isNotEmpty)
               BottomSheet(
                 shape: RoundedRectangleBorder(
