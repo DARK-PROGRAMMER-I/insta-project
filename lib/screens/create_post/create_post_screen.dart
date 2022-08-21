@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:insta_project/screens/create_post/edit_post_screen.dart';
 import 'package:insta_project/screens/create_post/providers/post_provider.dart';
+import 'package:insta_project/screens/create_post/widgets/asset_holder.dart';
 import 'package:insta_project/screens/create_post/widgets/crop_image.dart';
 import 'package:insta_project/utils/colors.dart';
 import 'package:insta_project/utils/utils.dart';
@@ -198,7 +199,30 @@ XFile ? file;
                                       Container(
                                         height: Dimensions.height30,
                                         width: Dimensions.width30,
-                                        child: assets[index].,
+                                        child: AssetThumbnail(
+                                          asset: assets[index],
+                                          onSelect: ()async{
+                                            if (selectedAssets != assets[index]) {
+                                              selectedAssets = assets[index];
+                                              imageFile = await selectedAssets?.file;
+
+                                              if (file != null) {
+                                                imageFile = await cropImage(imageFile: imageFile!);
+                                                if (file == null) {
+                                                  selectedAssets = null;
+                                                }
+                                                setState(() {});
+                                              }
+                                              // changes done here
+                                              // widget.onSubmit(file!);
+                                            } else {
+                                              selectedAssets = null;
+                                              imageFile = null;
+                                              setState(() {});
+                                            }
+                                          },
+                                          selected: selectedAssets == assets[index],
+                                        ),
                                       );
                                     }
                                     ),
