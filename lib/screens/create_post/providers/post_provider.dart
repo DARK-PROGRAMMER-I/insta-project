@@ -99,6 +99,6 @@ class PostProvider with ChangeNotifier{
   // Get image and store it in firebase
   postImage(String uid, String description, String userName)async{
     FirebaseFirestore _store = FirebaseFirestore.instance;
-    _store.collection('posts').doc();
+    _store.collection('posts');
   }
 }
