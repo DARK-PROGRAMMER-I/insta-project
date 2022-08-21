@@ -2,38 +2,37 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
   final String? name;
-  final String? email;
-  final String? bio;
+  final String? postId;
+  final String? description;
   final String? uid;
-  final List? followers;
-  final List? folowing;
-  final String ?imgUrl;
+  final List? likes;
+  final String ?postImgUrl;
+  final DateTime? dateCreated;
 
   UserModel({
     this.name,
-    this.email,
-    this.bio,
     this.uid,
-    this.followers,
-    this.folowing,
-    this.imgUrl,
+    this.postId,
+    this.likes,
+    this.description,
+    this.postImgUrl,
+    this.dateCreated,
   });
 
   Map<String, dynamic> toJson() => {
     'name': name ,
-    'email': email ,
-    'bio': bio ,
+    'postId': postId ,
+    'description': description ,
     'uid': uid ,
-    'followers' : [],
-    'following' : [],
-    'imgUrl': imgUrl ,
+    'likes' : [],
+    'postImgUrl': postImgUrl ,
+    'dateCreated' : dateCreated,
   };
 
   UserModel fromJson(DocumentSnapshot snapshot){
     var snap = snapshot.data() as Map<String, dynamic>;
     return UserModel(
         name: snap['name'],
-        email: snap['email'],
         bio: snap['bio'],
         uid: snap['uid'],
         followers: snap['followers'],
