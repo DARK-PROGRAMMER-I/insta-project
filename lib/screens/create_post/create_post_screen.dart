@@ -25,13 +25,13 @@ class CreatePostScreen extends StatefulWidget {
 }
 
 class _CreatePostScreenState extends State<CreatePostScreen> {
-  bool loading  = true;
-  bool saving = false;
-  List<AssetEntity> assets = [];
+  // bool loading  = true;
+  // bool saving = false;
+  // List<AssetEntity> assets = [];
   AssetEntity ? selectedAssets;
   List<AssetPathEntity> folderList = [];
-  AssetPathEntity? currentFolder;
-  File? imageFile;
+  // AssetPathEntity? currentFolder;
+  // File? imageFile;
 
   @override
   void initState() {
@@ -40,30 +40,31 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   }
 
   fetch_images()async{
-    if(currentFolder == null){
+    final postProvider = Provider.of<PostProvider>(context);
+    if(postProvider.selectedFolder == null){
       final folders = await PhotoManager.getAssetPathList();
       folderList = folders;
-      currentFolder = folderList.first;
+      postProvider.getSelectedFolder(folderList.first);
+
     }
-    final recentFolder = currentFolder;
+    final recentFolder = postProvider.selectedFolder;
     final recentAssets = await recentFolder?.getAssetListRange(
         start: 0,
         end: 1000000,
     );
-    assets = recentAssets!;
-    loading = false;
+    postProvider.getImageList(recentAssets!);
+    postProvider.getLoadingStatus(false);
     if(mounted){
       setState(() {
       });
     }
   }
-XFile ? file;
+
   takePhoto()async{
+    final postProvider = Provider.of<PostProvider>(context);
     XFile? imgFile = await ImagePicker().pickImage(source: ImageSource.camera);
     if(imgFile != null){
-      setState(() {
-        imageFile = File(imgFile.path);
-      });
+      postProvider.getImageFile(File(imgFile.path));
     }
 
 
@@ -76,17 +77,17 @@ XFile ? file;
       appBar: PreferredSize(
           preferredSize: Size.square(Dimensions.height70),
           child: PostAppbar()),
-      body: loading ? Utils.spinKit(
+      body: postProvider.isLoading! ? Utils.spinKit(
         color: AppColors.mainWhiteColor
       ): SingleChildScrollView(
         child: Column(
           children: [
-            if(imageFile !=  null)
+            if(postProvider.imageFile !=  null)
               Stack(
                 children : [
                   ImageContainer(
-                  file: imageFile,
-                  isFull: assets.isEmpty,
+                  file: postProvider.imageFile,
+                  isFull: postProvider.imageList.isEmpty,
                   onTap: fetch_images,
                 ),
                   Positioned(
@@ -94,7 +95,8 @@ XFile ? file;
                     left: 10,
                     child:  GestureDetector(
                         onTap: ()async{
-                          imageFile = await cropImage(imageFile: imageFile!);
+                         File? file= await cropImage(imageFile: postProvider.imageFile!);
+                         postProvider.getImageFile(file!);
                         },
 
                         child: Container(
@@ -112,7 +114,7 @@ XFile ? file;
                     ) ,
                     ),
                 ]),
-            if(imageFile == null)
+            if(postProvider.imageFile == null)
               Container(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -123,7 +125,7 @@ XFile ? file;
                   ),
                 ),
               ),
-            if(assets.isNotEmpty)
+            if(postProvider.imageList.isNotEmpty)
               BottomSheet(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
@@ -157,7 +159,7 @@ XFile ? file;
                                         child:  DropdownButton(
                                           isDense: false,
                                           hint: Text('select'),
-                                          value: postProvider.selected,
+                                          value: postProvider.selectedFolder,
                                           items: folderList.map((AssetPathEntity item) {
                                             return DropdownMenuItem(
                                                 child: Text(item.name),
@@ -165,9 +167,8 @@ XFile ? file;
                                             );
                                           }).toList(),
                                           onChanged: (value) {
-                                            print(postProvider.getSelected(value as AssetPathEntity));
-                                             postProvider.getSelected(value as AssetPathEntity);
-                                             currentFolder = value as AssetPathEntity;
+                                             postProvider.getSelectedFolder(value as AssetPathEntity);
+                                             fetch_images();
                                           },
                                         )
                                 ),
@@ -189,25 +190,25 @@ XFile ? file;
                                   crossAxisSpacing: Dimensions.height20,
                                   mainAxisSpacing: Dimensions.width20,
                                 ),
+                                    itemCount: postProvider.imageList.length,
                                     itemBuilder: (context, index){
-                                      return assets.length != 0 ?  Container(
-                                        color: Colors.deepPurple,
-                                        height: Dimensions.height30,
-                                        width: Dimensions.width30,
-                                      ):
-
-                                      Container(
-                                        height: Dimensions.height30,
-                                        width: Dimensions.width30,
+                                      return GestureDetector(
+                                        onTap: (){
+                                          setState(()async {
+                                            File? file =await postProvider.imageList[index].file;
+                                            postProvider.getImageFile(file);
+                                          });
+                                        },
                                         child: AssetThumbnail(
-                                          asset: assets[index],
+                                          asset: postProvider.imageList[index],
                                           onSelect: ()async{
-                                            if (selectedAssets != assets[index]) {
-                                              selectedAssets = assets[index];
-                                              imageFile = await selectedAssets?.file;
-
+                                            if (selectedAssets != postProvider.imageList[index]) {
+                                              selectedAssets = postProvider.imageList[index];
+                                              File? file = await selectedAssets?.file;
+                                              postProvider.getImageFile(file);
                                               if (file != null) {
-                                                imageFile = await cropImage(imageFile: imageFile!);
+                                                File? file = await cropImage(imageFile: postProvider.imageFile!);
+                                                postProvider.getImageFile(file!);
                                                 if (file == null) {
                                                   selectedAssets = null;
                                                 }
@@ -217,11 +218,12 @@ XFile ? file;
                                               // widget.onSubmit(file!);
                                             } else {
                                               selectedAssets = null;
-                                              imageFile = null;
+                                              File? file = null;
+                                              postProvider.getImageFile(file);
                                               setState(() {});
                                             }
                                           },
-                                          selected: selectedAssets == assets[index],
+                                          selected: selectedAssets == postProvider.imageList[index],
                                         ),
                                       );
                                     }
@@ -234,45 +236,9 @@ XFile ? file;
                     );
                   }
               )
-
           ],
         ),
       )
     );
   }
 }
-//GridView.builder(
-//                       itemCount: assets.length,
-//                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                           childAspectRatio: 0.85,
-//                           crossAxisCount: 3,
-//                           crossAxisSpacing: Dimensions.height20,
-//                           mainAxisSpacing: Dimensions.width20,
-//                         ),
-//                         itemBuilder: (_, index) {
-//                           return AssetThumbnail(
-//                               asset: assets[index],
-//                               onSelect: () async {
-//                                 if (selectedAssets != assets[index]) {
-//                                   selectedAssets = assets[index];
-//                                   file = await selectedAssets?.file;
-//                                   //setState(() {});
-//                                   // changes done here
-//                                   if (file != null) {
-//                                     file = await cropImage(imageFile: file!);
-//                                     if (file == null) {
-//                                       selectedAssets = null;
-//                                     }
-//                                     setState(() {});
-//                                   }
-//                                   // changes done here
-//                                   widget.onSubmit(file!);
-//                                 } else {
-//                                   selectedAssets = null;
-//                                   file = null;
-//                                   setState(() {});
-//                                 }
-//                               },
-//                               selected: selectedAssets == assets[index]);
-//                         }
-//                     );
