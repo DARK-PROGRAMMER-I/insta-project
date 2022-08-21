@@ -44,34 +44,6 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   @override
   Widget build(BuildContext context) {
     final postProvider = Provider.of<PostProvider>(context);
-    // fetch_images()async{
-    //   // final postProvider = Provider.of<PostProvider>(context);
-    //   if(postProvider.selectedFolder == null){
-    //     final folders = await PhotoManager.getAssetPathList();
-    //     folderList = folders;
-    //     postProvider.getSelectedFolder(folderList.first);
-    //
-    //   }
-    //   final recentFolder = postProvider.selectedFolder;
-    //   final recentAssets = await recentFolder?.getAssetListRange(
-    //     start: 0,
-    //     end: 1000000,
-    //   );
-    //   postProvider.getImageList(recentAssets!);
-    //   postProvider.getLoadingStatus(false);
-    //   if(mounted){
-    //     setState(() {
-    //     });
-    //   }
-    // }
-
-    // takePhoto()async{
-    //   // final postProvider = Provider.of<PostProvider>(context);
-    //   XFile? imgFile = await ImagePicker().pickImage(source: ImageSource.camera);
-    //   if(imgFile != null){
-    //     postProvider.getImageFile(File(imgFile.path));
-    //   }
-    // }
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.square(Dimensions.height70),
@@ -233,7 +205,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         ),
                       ),
                     );
-                  }
+                  },
+                enableDrag: false,
               )
           ],
         ),
