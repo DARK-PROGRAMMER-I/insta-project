@@ -5,7 +5,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:insta_project/screens/create_post/providers/post_provider.dart';
 import 'package:insta_project/utils/colors.dart';
 import 'package:provider/provider.dart';
-import '../../utils/dimensions.dart';
 import '../../widgets/big_text.dart';
 
 part 'widgets/post_info_appbar.dart';
@@ -26,10 +25,13 @@ class _PostInfoScreenState extends State<PostInfoScreen> {
           preferredSize: Size.square(Dimensions.height70),
           child: PostInfoAppbar()
       ),
-      body: Column(
-        children: [
-
-        ],
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: Dimensions.width20, vertical: Dimensions.height10),
+        child: Column(
+          children: [
+            ImageAndDescription()
+          ],
+        ),
       ),
     );
   }

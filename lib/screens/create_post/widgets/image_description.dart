@@ -14,6 +14,7 @@ class ImageAndDescription extends StatelessWidget {
           color: Colors.white,
           width: Dimensions.width50,
           height: Dimensions.height50,
+          child: Image.file(postProvider.imageFile!),
         ),
 
       ],
