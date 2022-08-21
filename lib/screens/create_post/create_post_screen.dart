@@ -89,14 +89,26 @@ XFile ? file;
                   onTap: fetch_images,
                 ),
                   Positioned(
-                    bottom: 0,
-                    left: 30,
+                    bottom: 20,
+                    left: 10,
                     child:  GestureDetector(
                         onTap: ()async{
                           imageFile = await cropImage(imageFile: imageFile!);
                         },
 
-                        child: Icon(Icons.crop, color: AppColors.mainWhiteColor, size: Dimensions.icon20,)) ,
+                        child: Container(
+                          width: Dimensions.width30,
+                          height: Dimensions.height30,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColors.mainWhiteColor.withOpacity(0.3),
+
+                          ),
+                            child: Icon(
+                              Icons.crop, color: AppColors.mainWhiteColor, size: Dimensions.icon20,
+                            )
+                        )
+                    ) ,
                     ),
                 ]),
             if(imageFile == null)
@@ -177,10 +189,16 @@ XFile ? file;
                                   mainAxisSpacing: Dimensions.width20,
                                 ),
                                     itemBuilder: (context, index){
-                                      return Container(
+                                      return assets.length != 0 ?  Container(
                                         color: Colors.deepPurple,
                                         height: Dimensions.height30,
                                         width: Dimensions.width30,
+                                      ):
+
+                                      Container(
+                                        height: Dimensions.height30,
+                                        width: Dimensions.width30,
+                                        child: assets[index].,
                                       );
                                     }
                                     ),

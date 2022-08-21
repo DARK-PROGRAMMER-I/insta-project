@@ -45,17 +45,5 @@ class Utils{
     color: color ?? AppColors.redColor,
     size: Dimensions.height20
   );
-
-  static Future<GiphyGif?> setGif(BuildContext context)async{
-    GiphyGif? gif;
-    try{
-      gif = await Giphy.getGif(
-          context: context, apiKey: 'LmqYjHEF3RX8fE2bOa2csLFYjn3WWQ0n');
-    }catch(e){
-      toastMessage(e.toString());
-    }
-    return gif;
-  }
-
 }
 

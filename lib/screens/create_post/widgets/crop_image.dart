@@ -11,6 +11,7 @@ Future<File?> cropImage({required File imageFile}) async {
       aspectRatioPresets: [
         CropAspectRatioPreset.square,
         CropAspectRatioPreset.ratio3x2,
+        CropAspectRatioPreset.original,
         CropAspectRatioPreset.ratio4x3,
         CropAspectRatioPreset.ratio5x4,
       ],
