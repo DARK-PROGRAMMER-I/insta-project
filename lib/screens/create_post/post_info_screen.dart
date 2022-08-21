@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:insta_project/widgets/small_text.dart';
 import '../../utils/dimensions.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:insta_project/screens/create_post/providers/post_provider.dart';
@@ -28,8 +29,24 @@ class _PostInfoScreenState extends State<PostInfoScreen> {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: Dimensions.width20, vertical: Dimensions.height10),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ImageAndDescription()
+            ImageAndDescription(),
+            Divider(color: AppColors.greyColor,),
+            Padding(
+                padding: EdgeInsets.symmetric(vertical: Dimensions.height15),
+                child: SmallText(name: 'Tag people', bold: false, align: false,color: AppColors.mainWhiteColor,),
+            ),
+            Divider(color: AppColors.greyColor,),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: Dimensions.height15),
+              child: SmallText(name: 'Add location', bold: false, align: false,color: AppColors.mainWhiteColor,),
+            ),
+            Divider(color: AppColors.greyColor,),
+            SizedBox(height: 15,),
+            SmallText(name: 'Also post to', bold: false, align: false,color: AppColors.mainWhiteColor,),
+
+
           ],
         ),
       ),

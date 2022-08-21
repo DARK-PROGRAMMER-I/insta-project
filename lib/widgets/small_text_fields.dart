@@ -33,7 +33,7 @@ class SmallTextField extends StatelessWidget {
               suffixIcon: Icon(iconData, color: iconColor,size: Dimensions.icon24,),
               hintText: text,
               hintStyle: TextStyle(
-                  color: AppColors.smallTextColor,
+                  color: AppColors.greyColor,
                   fontWeight: FontWeight.w300,
                   fontSize: Dimensions.smallText
               ),
@@ -52,7 +52,7 @@ class SmallTextField extends StatelessWidget {
           InputDecoration(
               hintText: text,
               hintStyle: TextStyle(
-                  color: AppColors.smallTextColor,
+                  color: AppColors.greyColor,
                   fontWeight: FontWeight.w300,
                   fontSize: Dimensions.smallText
               ),

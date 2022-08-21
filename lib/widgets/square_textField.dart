@@ -22,7 +22,7 @@ class SquareTextFields extends StatelessWidget {
           contentPadding: EdgeInsets.symmetric(horizontal: Dimensions.width25, vertical: Dimensions.height5),
             hintText: text,
             hintStyle: TextStyle(
-                color: AppColors.smallTextColor,
+                color: AppColors.greyColor,
                 fontWeight: FontWeight.w300,
                 fontSize: Dimensions.bigText,
 

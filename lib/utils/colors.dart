@@ -9,7 +9,7 @@ const secondaryColor = Colors.grey;
 
 class AppColors{
   static final Color mobileBackgroundColor = Color.fromRGBO(0, 0, 0, 1);
-  static final Color smallTextColor = const Color(0xffa0a09f);
+  static final Color greyColor = const Color(0xffa0a09f);
   static final Color blueColor = const Color(0xff5885f6);
   static final Color primaryColor = const Color(0xff0c4096);
   static final Color buttonBackgroundColor= const Color(0xffeae9e9);

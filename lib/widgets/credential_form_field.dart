@@ -43,7 +43,7 @@ class CredentialFormField extends StatelessWidget {
             suffixIcon: Icon(iconData, color: iconColor,size: Dimensions.icon24,),
             hintText: text,
             hintStyle: TextStyle(
-                color: AppColors.smallTextColor,
+                color: AppColors.greyColor,
                 fontWeight: FontWeight.w400,
                 fontSize: Dimensions.smallText
             ),
@@ -63,7 +63,7 @@ class CredentialFormField extends StatelessWidget {
           contentPadding: EdgeInsets.symmetric(vertical: Dimensions.height10, horizontal: Dimensions.width20),
             hintText: text,
             hintStyle: TextStyle(
-                color: AppColors.smallTextColor,
+                color: AppColors.greyColor,
                 fontWeight: FontWeight.w400,
                  fontSize: Dimensions.smallText,
 

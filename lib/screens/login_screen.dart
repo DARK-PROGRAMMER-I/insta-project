@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         }
                       },
-                      color: AppColors.smallTextColor,
+                      color: AppColors.greyColor,
                     ),
                     SizedBox(height: Dimensions.height20,),
 

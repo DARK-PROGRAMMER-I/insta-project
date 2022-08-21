@@ -87,4 +87,13 @@ class PostProvider with ChangeNotifier{
     }
   }
 
+  // get description text
+  String? _desText = '';
+  String? get desText => _desText;
+  getDesText(String? text){
+    _desText = text;
+    notifyListeners();
+  }
+
+
 }

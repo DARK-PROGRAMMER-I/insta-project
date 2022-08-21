@@ -128,7 +128,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 print('here im ');
                               }
                             },
-                            color: AppColors.smallTextColor,
+                            color: AppColors.greyColor,
                           ),
                           SizedBox(height: Dimensions.height20,),
                           Container(

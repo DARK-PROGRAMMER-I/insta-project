@@ -17,7 +17,7 @@ class TextWrap extends StatelessWidget {
             Flexible(
                 child: Text(
                   text,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500,color: AppColors.smallTextColor),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500,color: AppColors.greyColor),
                   overflow: TextOverflow.clip,
                 ))
           ],
