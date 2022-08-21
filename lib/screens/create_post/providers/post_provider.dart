@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:photo_manager/photo_manager.dart';
@@ -95,5 +96,9 @@ class PostProvider with ChangeNotifier{
     notifyListeners();
   }
 
-
+  // Get image and store it in firebase
+  postImage(String uid, String description, String userName)async{
+    FirebaseFirestore _store = FirebaseFirestore.instance;
+    _store.collection('posts').doc()
+  }
 }

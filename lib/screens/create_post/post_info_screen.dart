@@ -10,6 +10,7 @@ import '../../widgets/big_text.dart';
 
 part 'widgets/post_info_appbar.dart';
 part 'widgets/image_description.dart';
+part 'widgets/post_storage_method.dart';
 class PostInfoScreen extends StatefulWidget {
   File? imgFile;
   PostInfoScreen({Key? key, this.imgFile}) : super(key: key);
@@ -45,8 +46,6 @@ class _PostInfoScreenState extends State<PostInfoScreen> {
             Divider(color: AppColors.greyColor,),
             SizedBox(height: 15,),
             SmallText(name: 'Also post to', bold: false, align: false,color: AppColors.mainWhiteColor,),
-
-
           ],
         ),
       ),

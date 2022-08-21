@@ -29,8 +29,9 @@ class PostInfoAppbar extends StatelessWidget {
             size: Dimensions.icon40,
           ),
           onPressed: (){
-            // postProvider.imageFile == null ? Utils.showSnakbar('Pick Atleast 1 Image', context) :
-            // Navigator.push(context, MaterialPageRoute(builder: (_)=> PostInfoScreen()));
+           if(postProvider.desText!.isNotEmpty){
+
+           }
           },
         ),
       ],
