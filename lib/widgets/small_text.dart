@@ -7,12 +7,15 @@ class SmallText extends StatelessWidget {
   double size = 0;
   double height;
   bool bold;
+  bool align;
   SmallText(
       {required this.name,
         required this.bold,
         this.size = 0,
         this.color = const Color(0xffa0a09f),
-        this.height = 1.2});
+        this.height = 1.2,
+        this.align = false,
+      });
   TextOverflow overflow = TextOverflow.visible;
   @override
   Widget build(BuildContext context) {
@@ -22,9 +25,10 @@ class SmallText extends StatelessWidget {
         fontSize: size  == 0 ? Dimensions.smallText : size != 0 ? Dimensions.pageHeight / (860/size): size ,
         color: color , fontFamily: 'Roboto', height: height,
         fontWeight: bold == true ? FontWeight.w600: FontWeight.normal,
-        letterSpacing: 0.70
+        letterSpacing: 0.70,
       ),
       overflow: overflow,
+      textAlign: align ? TextAlign.center : TextAlign.start,
     );
   }
 }

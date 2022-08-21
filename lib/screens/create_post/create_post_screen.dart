@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:insta_project/screens/create_post/edit_post_screen.dart';
+import 'package:insta_project/screens/create_post/post_info_screen.dart';
 import 'package:insta_project/screens/create_post/providers/post_provider.dart';
 import 'package:insta_project/screens/create_post/widgets/asset_holder.dart';
 import 'package:insta_project/screens/create_post/widgets/crop_image.dart';
@@ -19,6 +19,7 @@ part 'widgets/image_container.dart';
 part 'widgets/gif_file.dart';
 part 'widgets/crop_icon.dart';
 part 'widgets/loading_gif.dart';
+
 
 class CreatePostScreen extends StatefulWidget {
   const CreatePostScreen({Key? key}) : super(key: key);

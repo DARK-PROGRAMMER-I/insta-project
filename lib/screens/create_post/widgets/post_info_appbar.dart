@@ -1,7 +1,7 @@
-part of '../create_post_screen.dart';
+part of '../post_info_screen.dart';
 
-class PostAppbar extends StatelessWidget {
-  const PostAppbar({Key? key}) : super(key: key);
+class PostInfoAppbar extends StatelessWidget {
+  const PostInfoAppbar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class PostAppbar extends StatelessWidget {
       backgroundColor: AppColors.mobileBackgroundColor,
       leading: IconButton(
         icon: FaIcon(
-          FontAwesomeIcons.xmark,
+         FontAwesomeIcons.arrowLeftLong,
           color: AppColors.mainWhiteColor,
           size: Dimensions.icon24,
         ),
@@ -24,12 +24,13 @@ class PostAppbar extends StatelessWidget {
       actions: [
         IconButton(
           icon: Icon(
-            Icons.arrow_forward,
-            color: AppColors.mainWhiteColor,
-            size: Dimensions.icon24,),
+            Icons.check_sharp,
+            color: AppColors.blueColor,
+            size: Dimensions.icon40,
+          ),
           onPressed: (){
-            postProvider.imageFile == null ? Utils.showSnakbar('Pick Atleast 1 Image', context) :
-                Navigator.push(context, MaterialPageRoute(builder: (_)=> PostInfoScreen()));
+            // postProvider.imageFile == null ? Utils.showSnakbar('Pick Atleast 1 Image', context) :
+            // Navigator.push(context, MaterialPageRoute(builder: (_)=> PostInfoScreen()));
           },
         ),
       ],

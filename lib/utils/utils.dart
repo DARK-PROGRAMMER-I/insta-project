@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:insta_project/utils/colors.dart';
 import 'package:insta_project/utils/dimensions.dart';
+import 'package:insta_project/widgets/small_text.dart';
 
 pickImage(ImageSource source)async{
   ImagePicker picker = ImagePicker();
@@ -36,8 +37,9 @@ class Utils{
   static showSnakbar(String message, BuildContext context){
     ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
+          duration: Duration(seconds: 2),
           backgroundColor: Colors.red,
-          content: Text(message, textAlign: TextAlign.center,),
+          content: SmallText(name: message, bold: true, color: AppColors.mainWhiteColor,align: true,),
         )
     );
   }
