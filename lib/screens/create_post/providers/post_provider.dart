@@ -1,9 +1,31 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 class PostProvider with ChangeNotifier{
+  PostProvider(){
+    fetch_images();
+  }
+  //Fetch Images
+  fetch_images()async{
+    if(selectedFolder == null){
+      final folders = await PhotoManager.getAssetPathList();
+      getFolderList(folders);
+      getSelectedFolder(folderList.first);
+
+    }
+    final recentFolder = selectedFolder;
+    final recentAssets = await recentFolder?.getAssetListRange(
+      start: 0,
+      end: 1000000,
+    );
+    getImageList(recentAssets!);
+    getLoadingStatus(false);
+    notifyListeners();
+  }
+
   // Getting selected Folder
   AssetPathEntity? _selectedFolder;
   AssetPathEntity? get selectedFolder => _selectedFolder;
@@ -37,12 +59,32 @@ class PostProvider with ChangeNotifier{
     notifyListeners();
     return select;
   }
+
+  // get selected Image
+  AssetEntity? _selectedImage;
+  AssetEntity? get selectedImage => _selectedImage;
+  getSelectedImage(AssetEntity? select){
+  _selectedImage = select;
+    notifyListeners();
+    return select;
+  }
+
+
   // Loading inspection
   bool? _isLoading = true;
   bool? get isLoading => _isLoading;
   getLoadingStatus(bool? load){
     _isLoading = load;
     notifyListeners();
+  }
+
+  // Take Image
+  takePhoto()async{
+    // final postProvider = Provider.of<PostProvider>(context);
+    XFile? imgFile = await ImagePicker().pickImage(source: ImageSource.camera);
+    if(imgFile != null){
+      getImageFile(File(imgFile.path));
+    }
   }
 
 }

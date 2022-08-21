@@ -28,51 +28,50 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   // bool loading  = true;
   // bool saving = false;
   // List<AssetEntity> assets = [];
-  AssetEntity ? selectedAssets;
-  List<AssetPathEntity> folderList = [];
+  // AssetEntity ? selectedAssets;
+  // List<AssetPathEntity> folderList = [];
   // AssetPathEntity? currentFolder;
   // File? imageFile;
 
   @override
   void initState() {
-    fetch_images();
+    // fetch_images();
     super.initState();
   }
 
-  fetch_images()async{
-    final postProvider = Provider.of<PostProvider>(context);
-    if(postProvider.selectedFolder == null){
-      final folders = await PhotoManager.getAssetPathList();
-      folderList = folders;
-      postProvider.getSelectedFolder(folderList.first);
 
-    }
-    final recentFolder = postProvider.selectedFolder;
-    final recentAssets = await recentFolder?.getAssetListRange(
-        start: 0,
-        end: 1000000,
-    );
-    postProvider.getImageList(recentAssets!);
-    postProvider.getLoadingStatus(false);
-    if(mounted){
-      setState(() {
-      });
-    }
-  }
-
-  takePhoto()async{
-    final postProvider = Provider.of<PostProvider>(context);
-    XFile? imgFile = await ImagePicker().pickImage(source: ImageSource.camera);
-    if(imgFile != null){
-      postProvider.getImageFile(File(imgFile.path));
-    }
-
-
-  }
 
   @override
   Widget build(BuildContext context) {
     final postProvider = Provider.of<PostProvider>(context);
+    // fetch_images()async{
+    //   // final postProvider = Provider.of<PostProvider>(context);
+    //   if(postProvider.selectedFolder == null){
+    //     final folders = await PhotoManager.getAssetPathList();
+    //     folderList = folders;
+    //     postProvider.getSelectedFolder(folderList.first);
+    //
+    //   }
+    //   final recentFolder = postProvider.selectedFolder;
+    //   final recentAssets = await recentFolder?.getAssetListRange(
+    //     start: 0,
+    //     end: 1000000,
+    //   );
+    //   postProvider.getImageList(recentAssets!);
+    //   postProvider.getLoadingStatus(false);
+    //   if(mounted){
+    //     setState(() {
+    //     });
+    //   }
+    // }
+
+    // takePhoto()async{
+    //   // final postProvider = Provider.of<PostProvider>(context);
+    //   XFile? imgFile = await ImagePicker().pickImage(source: ImageSource.camera);
+    //   if(imgFile != null){
+    //     postProvider.getImageFile(File(imgFile.path));
+    //   }
+    // }
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.square(Dimensions.height70),
@@ -88,7 +87,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                   ImageContainer(
                   file: postProvider.imageFile,
                   isFull: postProvider.imageList.isEmpty,
-                  onTap: fetch_images,
+                  onTap: (){postProvider.fetch_images();},
                 ),
                   Positioned(
                     bottom: 20,
@@ -160,7 +159,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                           isDense: false,
                                           hint: Text('select'),
                                           value: postProvider.selectedFolder,
-                                          items: folderList.map((AssetPathEntity item) {
+                                          items: postProvider.folderList.map((AssetPathEntity item) {
                                             return DropdownMenuItem(
                                                 child: Text(item.name),
                                                 value: item
@@ -168,12 +167,12 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                           }).toList(),
                                           onChanged: (value) {
                                              postProvider.getSelectedFolder(value as AssetPathEntity);
-                                             fetch_images();
+                                             postProvider.fetch_images();
                                           },
                                         )
                                 ),
                                     IconButton(
-                                        onPressed: takePhoto,
+                                        onPressed: postProvider.takePhoto,
                                         icon: Icon(Icons.camera_alt)
                                     )
 
@@ -202,28 +201,28 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                         child: AssetThumbnail(
                                           asset: postProvider.imageList[index],
                                           onSelect: ()async{
-                                            if (selectedAssets != postProvider.imageList[index]) {
-                                              selectedAssets = postProvider.imageList[index];
-                                              File? file = await selectedAssets?.file;
+                                            if (postProvider.selectedImage != postProvider.imageList[index]) {
+                                              postProvider.getSelectedImage(postProvider.imageList[index]);
+                                              File? file = await postProvider.selectedImage?.file;
                                               postProvider.getImageFile(file);
                                               if (file != null) {
                                                 File? file = await cropImage(imageFile: postProvider.imageFile!);
-                                                postProvider.getImageFile(file!);
+                                                postProvider.getImageFile(file);
                                                 if (file == null) {
-                                                  selectedAssets = null;
+                                                  postProvider.getSelectedImage(null);
                                                 }
                                                 setState(() {});
                                               }
                                               // changes done here
                                               // widget.onSubmit(file!);
                                             } else {
-                                              selectedAssets = null;
+                                              postProvider.getSelectedImage(null);
                                               File? file = null;
                                               postProvider.getImageFile(file);
                                               setState(() {});
                                             }
                                           },
-                                          selected: selectedAssets == postProvider.imageList[index],
+                                          selected: postProvider.selectedImage == postProvider.imageList[index],
                                         ),
                                       );
                                     }
