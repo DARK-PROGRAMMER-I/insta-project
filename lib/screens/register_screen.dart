@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:insta_project/controllers/auth_ctr/authentication.dart';
 import 'package:insta_project/main.dart';
@@ -15,6 +16,10 @@ import 'package:insta_project/widgets/credential_form_field.dart';
 import 'package:insta_project/widgets/custom_buttons.dart';
 import 'package:insta_project/widgets/small_text.dart';
 import 'package:provider/provider.dart';
+
+import '../responsive/mobile_screen.dart';
+import '../responsive/responsive.dart';
+import '../responsive/web_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -130,7 +135,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 if(response){
                                   userprovider.loadingStatus(false);
                                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign-up Successfull')));
-                                  Navigator.push(context, MaterialPageRoute(builder: (_)=> MyApp()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (_)=> ResponsiveLayout(
+                                    webScreenLayout: WebScreen(),
+                                    mobileScreenLayout: MobileScreen(),
+
+                                  )));
                                 }
                               }else{
                                 print('here im ');
