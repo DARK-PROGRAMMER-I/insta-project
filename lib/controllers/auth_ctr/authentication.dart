@@ -1,8 +1,6 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:insta_project/resources/storage_methods.dart';
 import '../../models/user_model.dart';
 
@@ -16,7 +14,9 @@ class Auth{
   Future<UserModel> getUserData()async{
     String uid = await FirebaseAuth.instance.currentUser!.uid;
     DocumentSnapshot snap =await fire_store.collection('user').doc(uid).get();
-    return UserModel().fromJson(snap);
+    UserModel model = UserModel().fromJson(snap);
+    print(model);
+    return model;
   }
 
 
