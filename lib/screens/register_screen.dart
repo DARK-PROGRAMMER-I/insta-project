@@ -118,7 +118,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     email: _emailCtr.text,
                                     pass: _passCtr.text,
                                     bio: _bioCtr.text,
-                                    file: image!
+                                    file: File(image!.path)
                                 );
                                 print(response);
                                 if(response){
