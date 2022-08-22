@@ -37,6 +37,9 @@ class _ImageAndDescriptionState extends State<ImageAndDescription> {
               disabledBorder: InputBorder.none,
               enabledBorder: InputBorder.none,
             ),
+            onChanged: (val){
+
+            },
           ),
         )
 
