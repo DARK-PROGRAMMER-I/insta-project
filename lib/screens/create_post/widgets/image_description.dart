@@ -38,7 +38,7 @@ class _ImageAndDescriptionState extends State<ImageAndDescription> {
               enabledBorder: InputBorder.none,
             ),
             onChanged: (val){
-
+              postProvider.getDesText(val);
             },
           ),
         )

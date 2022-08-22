@@ -22,6 +22,7 @@ class PostInfoScreen extends StatefulWidget {
 class _PostInfoScreenState extends State<PostInfoScreen> {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.square(Dimensions.height70),
