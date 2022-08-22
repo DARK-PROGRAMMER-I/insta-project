@@ -15,7 +15,6 @@ class Auth{
     String uid = await FirebaseAuth.instance.currentUser!.uid;
     DocumentSnapshot snap =await fire_store.collection('user').doc(uid).get();
     UserModel model = UserModel().fromJson(snap);
-    print(model);
     return model;
   }
 
