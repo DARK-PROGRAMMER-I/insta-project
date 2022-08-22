@@ -33,13 +33,13 @@ class UserModel {
   UserModel fromJson(DocumentSnapshot snapshot){
     var snap = snapshot.data() as Map<String, dynamic>;
     return UserModel(
-        name: snap['name'],
-        email: snap['email'],
-        bio: snap['bio'],
-        uid: snap['uid'],
-        followers: snap['followers'],
-        folowing: snap['folowing'],
-        imgUrl: snap['imgUrl']
+        name: snap['name'] ?? '',
+        email: snap['email'] ?? '',
+        bio: snap['bio'] ?? '',
+        uid: snap['uid'] ?? '',
+        followers: snap['followers'] ?? [],
+        folowing: snap['folowing'] ?? [],
+        imgUrl: snap['imgUrl'] ?? ''
     );
   }
 

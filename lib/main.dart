@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:insta_project/controllers/auth_ctr/authentication.dart';
+import 'package:insta_project/models/user_model.dart';
 import 'package:insta_project/providers/navigation_provider.dart';
 import 'package:insta_project/providers/user/user_provider.dart';
 import 'package:insta_project/responsive/mobile_screen.dart';
@@ -42,6 +44,10 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => NavigationProvider()),
         ChangeNotifierProvider(create: (_) => PostProvider()),
+        StreamProvider<UserModel?>.value(
+            initialData: null,
+            value: Auth().userData,
+        )
 
       ],
       child: GetMaterialApp(

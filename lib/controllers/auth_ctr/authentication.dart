@@ -11,13 +11,16 @@ class Auth{
 
   StorageMethod method = StorageMethod();
 
-  Future<UserModel> getUserData()async{
-    String uid = await FirebaseAuth.instance.currentUser!.uid;
-    DocumentSnapshot snap =await fire_store.collection('user').doc(uid).get();
-    UserModel model = UserModel().fromJson(snap);
-    return model;
+  UserModel _getUserData(DocumentSnapshot snapshot){
+    return UserModel().fromJson(snapshot);
   }
 
+  Stream<UserModel> get userData {
+    FirebaseFirestore fire_store = FirebaseFirestore.instance;
+    return fire_store.collection('user').
+    doc(FirebaseAuth.instance.currentUser?.uid).snapshots()
+        .map(_getUserData);
+  }
 
   Future<bool> signUp({required String name, required String email, required String pass,required String bio, required File file})async{
 

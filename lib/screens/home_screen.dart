@@ -14,11 +14,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final userprovider = Provider.of<UserProvider>(context);
+    UserModel? userprovider = Provider.of<UserModel?>(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(userprovider.name.toString()),
+        title: Text(userprovider!.name.toString()),
       ),
     );
   }

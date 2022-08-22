@@ -15,11 +15,7 @@ class ResponsiveLayout extends StatefulWidget {
 class _ResponsiveLayoutState extends State<ResponsiveLayout> {
   @override
   void initState() {
-    userrefresh();
     super.initState();
-  }
-  userrefresh()async{
-    await UserProvider().refreshUser();
   }
 
   @override
