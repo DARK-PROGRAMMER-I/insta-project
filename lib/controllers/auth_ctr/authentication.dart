@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,14 +13,14 @@ class Auth{
 
   StorageMethod method = StorageMethod();
 
-  // Future<UserModel> getUserData()async{
-  //   String uid = await FirebaseAuth.instance.currentUser!.uid;
-  //   DocumentSnapshot snap =await _storeRef.doc(uid).get();
-  //   return UserModel().fromJson(snap);
-  // }
+  Future<UserModel> getUserData()async{
+    String uid = await FirebaseAuth.instance.currentUser!.uid;
+    DocumentSnapshot snap =await fire_store.collection('user').doc(uid).get();
+    return UserModel().fromJson(snap);
+  }
 
 
-  Future<bool> signUp({required String name, required String email, required String pass,required String bio, required Uint8List file})async{
+  Future<bool> signUp({required String name, required String email, required String pass,required String bio, required File file})async{
 
 
     try{

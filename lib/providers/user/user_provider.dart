@@ -6,8 +6,8 @@ class UserProvider with ChangeNotifier{
   UserModel? _user;
   UserModel? get user => _user;
 
-  // Future<void> refreshUser()async{
-  //   _user = await Auth().getUserData();
-  //   notifyListeners();
-  // }
+  Future<void> refreshUser()async{
+    _user = await Auth().getUserData();
+    notifyListeners();
+  }
 }

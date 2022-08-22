@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -29,9 +30,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 // Auth Class Initiallizaton
   Auth  auth = Auth();
 // Image data
-  Uint8List? image;
+  XFile? image;
   void setImage()async{
-    Uint8List img = await pickImage(ImageSource.camera);
+    XFile? img = await pickImage(ImageSource.camera);
     setState((){
       image = img;
     });
@@ -71,7 +72,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               image != null ?
                               CircleAvatar(
                                 radius: Dimensions.radius45,
-                                backgroundImage: MemoryImage(image!),
+                                backgroundImage: FileImage(File(image!.path)),
                               ):
                               CircleAvatar(
                                 radius: Dimensions.radius45,
@@ -122,7 +123,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 print(response);
                                 if(response){
                                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign-up Successfull')));
-                                  Navigator.push(context, MaterialPageRoute(builder: (_)=> LoginScreen()));
+                                  // Navigator.push(context, MaterialPageRoute(builder: (_)=> LoginScreen()));
                                 }
                               }else{
                                 print('here im ');
