@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(userprovider!.name.toString()),
+        title: Text(userprovider != null ? userprovider.name.toString() : 'user'),
       ),
     );
   }
