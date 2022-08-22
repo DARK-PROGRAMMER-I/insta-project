@@ -8,7 +8,7 @@ import '../../models/user_model.dart';
 
 class Auth{
   FirebaseAuth _auth = FirebaseAuth.instance;
-  CollectionReference _storeRef = FirebaseFirestore.instance.collection('user');
+  FirebaseFirestore fire_store = FirebaseFirestore.instance;
 
   StorageMethod method = StorageMethod();
 
@@ -20,23 +20,26 @@ class Auth{
 
 
   Future<bool> signUp({required String name, required String email, required String pass,required String bio, required Uint8List file})async{
+
+
     try{
-      UserCredential creds = await _auth.createUserWithEmailAndPassword(email: email, password: pass);
-      // Store Image to Firebase Storage
-      String imgUrl = await method.uploadImagetoStorage('profilePics', file, false);
+      UserCredential creds =
+      await _auth.createUserWithEmailAndPassword(email: email, password: pass);
+
+      String imgUrl =
+      await StorageMethod().uploadImagetoStorage('profilePics', file, false);
       print(imgUrl);
-      // For storing other info in database
-      await _storeRef.doc(creds.user!.uid).set(
-         {
-           'name':name,
-           'email':email,
-           'bio':bio,
-           'uid':creds.user!.uid,
-           'followers':[],
-           'folowing':[],
-           'imgUrl':imgUrl,
-         }
+      UserModel model = UserModel(
+        imgUrl: imgUrl,
+        folowing:[],
+        followers:[],
+        uid: creds.user!.uid,
+        bio: bio,
+        email: email,
+        name: name,
       );
+
+      await fire_store.collection('user').doc(creds.user!.uid).set(model.toJson());
       print('Success');
       return true;
     }catch(e){
