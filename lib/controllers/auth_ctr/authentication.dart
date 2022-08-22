@@ -26,15 +26,16 @@ class Auth{
     try{
       UserCredential creds =
       await _auth.createUserWithEmailAndPassword(email: email, password: pass);
-
+      User? user = creds.user;
       String? imgUrl =
       await StorageMethod().uploadImagetoStorage('profilePics', file, false);
       print(imgUrl);
+
       UserModel model = UserModel(
         imgUrl: imgUrl,
         folowing:[],
         followers:[],
-        uid: creds.user!.uid,
+        uid: user!.uid,
         bio: bio,
         email: email,
         name: name,

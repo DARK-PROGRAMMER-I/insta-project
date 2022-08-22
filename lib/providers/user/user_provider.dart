@@ -10,4 +10,11 @@ class UserProvider with ChangeNotifier{
     _user = await Auth().getUserData();
     notifyListeners();
   }
+
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+  loadingStatus(bool status){
+    _isLoading = status;
+    notifyListeners();
+  }
 }

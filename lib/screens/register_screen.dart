@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:insta_project/controllers/auth_ctr/authentication.dart';
+import 'package:insta_project/main.dart';
+import 'package:insta_project/providers/user/user_provider.dart';
 import 'package:insta_project/screens/login_screen.dart';
 import 'package:insta_project/utils/colors.dart';
 import 'package:insta_project/utils/dimensions.dart';
@@ -12,6 +14,7 @@ import 'package:insta_project/utils/utils.dart';
 import 'package:insta_project/widgets/credential_form_field.dart';
 import 'package:insta_project/widgets/custom_buttons.dart';
 import 'package:insta_project/widgets/small_text.dart';
+import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -48,6 +51,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final userprovider  = Provider.of<UserProvider>(context);
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -107,12 +111,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               controller: _bioCtr,
 
                           ),
+                          userprovider.isLoading ? Center(child: CircularProgressIndicator(),):
                           CustomButton(
                             text: 'Sign-up',
                             textColor: AppColors.whiteColor,
                             bold: true,
                             onpressed: ()async{
                               if(_formKey.currentState!.validate()){
+                                userprovider.loadingStatus(true);
                                 bool response= await auth.signUp(
                                     name: _nameCtr.value.text,
                                     email: _emailCtr.text,
@@ -122,8 +128,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 );
                                 print(response);
                                 if(response){
+                                  userprovider.loadingStatus(false);
                                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign-up Successfull')));
-                                  // Navigator.push(context, MaterialPageRoute(builder: (_)=> LoginScreen()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (_)=> MyApp()));
                                 }
                               }else{
                                 print('here im ');
