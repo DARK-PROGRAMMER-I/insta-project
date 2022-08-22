@@ -26,7 +26,7 @@ class Auth{
       UserCredential creds =
       await _auth.createUserWithEmailAndPassword(email: email, password: pass);
 
-      String imgUrl =
+      String? imgUrl =
       await StorageMethod().uploadImagetoStorage('profilePics', file, false);
       print(imgUrl);
       UserModel model = UserModel(
