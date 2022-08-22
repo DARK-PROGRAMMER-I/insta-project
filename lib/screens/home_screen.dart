@@ -15,11 +15,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final userprovider = Provider.of<UserProvider>(context);
-    String?  url;
-    userprovider.refreshUser().then((value) => url = value?.imgUrl);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(url.toString()),
+        title: Text(userprovider.name.toString()),
       ),
     );
   }
