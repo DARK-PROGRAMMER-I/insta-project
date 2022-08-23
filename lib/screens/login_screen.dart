@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:insta_project/controllers/auth_ctr/authentication.dart';
-import 'package:insta_project/screens/home_screen.dart';
+import 'package:insta_project/screens/home/home_screen.dart';
 import 'package:insta_project/screens/register_screen.dart';
 import 'package:insta_project/utils/colors.dart';
 import 'package:insta_project/utils/dimensions.dart';
@@ -64,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         if(_formKey.currentState!.validate()){
                           bool reponse = await auth.signIn(email: _emailCtr.text, pass: _passCtr.text);
                           if(reponse){
-                            // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login Successfull')));
+                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login Successfull')));
                             Navigator.push(context, MaterialPageRoute(builder: (_)=>HomeScreen() ));
                           }
                         }

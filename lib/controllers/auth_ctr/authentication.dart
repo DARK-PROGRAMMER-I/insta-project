@@ -24,7 +24,6 @@ class Auth{
 
   Future<bool> signUp({required String name, required String email, required String pass,required String bio, required File file})async{
 
-
     try{
       UserCredential creds =
       await _auth.createUserWithEmailAndPassword(email: email, password: pass);
@@ -44,6 +43,7 @@ class Auth{
       );
 
       await fire_store.collection('user').doc(creds.user!.uid).set(model.toJson());
+      userData;
       print('Success');
       return true;
     }catch(e){
@@ -56,6 +56,7 @@ class Auth{
   Future<bool> signIn({required String email, required String pass})async{
     try{
       UserCredential creds  = await _auth.signInWithEmailAndPassword(email: email, password: pass);
+      userData;
       return true;
     }catch(e){
       print(e.toString());
