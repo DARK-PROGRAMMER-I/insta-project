@@ -7,6 +7,8 @@ import 'package:insta_project/screens/create_post/post_info_screen.dart';
 import 'package:insta_project/screens/create_post/providers/post_provider.dart';
 import 'package:insta_project/screens/create_post/widgets/asset_holder.dart';
 import 'package:insta_project/screens/create_post/widgets/crop_image.dart';
+import 'package:insta_project/screens/navigation/nav_provider/navigation_provider.dart';
+import 'package:insta_project/screens/navigation/navigation_screen.dart';
 import 'package:insta_project/utils/colors.dart';
 import 'package:insta_project/utils/utils.dart';
 import 'package:photo_manager/photo_manager.dart';

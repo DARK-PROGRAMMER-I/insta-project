@@ -3,7 +3,11 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:insta_project/resources/storage_methods.dart';
+import 'package:insta_project/screens/create_post/model/post_model.dart';
+import 'package:insta_project/screens/create_post/res/post_storage.dart';
 import 'package:photo_manager/photo_manager.dart';
+import 'package:uuid/uuid.dart';
 
 class PostProvider with ChangeNotifier{
   PostProvider(){
@@ -101,4 +105,30 @@ class PostProvider with ChangeNotifier{
     FirebaseFirestore _store = FirebaseFirestore.instance;
     _store.collection('posts');
   }
+
+  Future<bool> uploadPost(String uid, String userName)async{
+    try{
+      String? postImageUrl =await StorageMethod().uploadImagetoStorage('postPics', imageFile!, true);
+      String postuid = Uuid().v1();
+      PostModel post = PostModel(
+        name: userName,
+        uid: uid,
+        dateCreated: DateTime.now(),
+        description: desText,
+        likes: [],
+        postId: postuid,
+        postImgUrl: postImageUrl,
+      );
+
+      PostStorage().postThePost(post.toJson(), postuid);
+
+      return true;
+    }catch(e){
+      print(e.toString());
+      return false;
+    }
+    return false;
+  }
+
+
 }

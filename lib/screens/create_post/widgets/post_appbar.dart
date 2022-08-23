@@ -6,6 +6,8 @@ class PostAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final postProvider = Provider.of<PostProvider>(context);
+    final navProvider = Provider.of<NavigationProvider>(context);
+
     return AppBar(
       backgroundColor: AppColors.mobileBackgroundColor,
       leading: IconButton(
@@ -14,7 +16,15 @@ class PostAppbar extends StatelessWidget {
           color: AppColors.mainWhiteColor,
           size: Dimensions.icon24,
         ),
-        onPressed: (){},
+        onPressed: (){
+          if(postProvider.imageFile != null){
+            postProvider.getImageFile(null);
+            navProvider.selectedIndex(0);
+          }else{
+            navProvider.selectedIndex(0);
+
+          }
+        },
       ),
       title: BigText(
         name: 'New Post',

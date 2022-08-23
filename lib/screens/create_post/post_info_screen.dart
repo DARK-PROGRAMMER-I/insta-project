@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:insta_project/models/user_model.dart';
+import 'package:insta_project/utils/utils.dart';
 import 'package:insta_project/widgets/small_text.dart';
 import '../../utils/dimensions.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

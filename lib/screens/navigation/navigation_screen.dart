@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:insta_project/providers/navigation_provider.dart';
+import 'package:insta_project/screens/navigation/nav_provider/navigation_provider.dart';
 import 'package:insta_project/screens/create_post/create_post_screen.dart';
 import 'package:insta_project/screens/home/home_screen.dart';
 import 'package:insta_project/utils/colors.dart';

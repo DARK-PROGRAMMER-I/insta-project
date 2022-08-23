@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:insta_project/controllers/auth_ctr/authentication.dart';
 import 'package:insta_project/models/user_model.dart';
-import 'package:insta_project/providers/navigation_provider.dart';
+import 'package:insta_project/screens/navigation/nav_provider/navigation_provider.dart';
 import 'package:insta_project/providers/user/user_provider.dart';
 import 'package:insta_project/responsive/mobile_screen.dart';
 import 'package:insta_project/responsive/responsive.dart';

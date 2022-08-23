@@ -6,6 +6,7 @@ class PostInfoAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final postProvider = Provider.of<PostProvider>(context);
+    final userProvider = Provider.of<UserModel>(context);
     return AppBar(
       backgroundColor: AppColors.mobileBackgroundColor,
       leading: IconButton(
@@ -14,7 +15,9 @@ class PostInfoAppbar extends StatelessWidget {
           color: AppColors.mainWhiteColor,
           size: Dimensions.icon24,
         ),
-        onPressed: (){},
+        onPressed: (){
+          Navigator.pop(context);
+        },
       ),
       title: BigText(
         name: 'New Post',
@@ -28,9 +31,13 @@ class PostInfoAppbar extends StatelessWidget {
             color: AppColors.blueColor,
             size: Dimensions.icon40,
           ),
-          onPressed: (){
+          onPressed: ()async{
            if(postProvider.desText!.isNotEmpty){
-
+             Utils.spinKit(color: AppColors.mainWhiteColor);
+             bool status = await postProvider.uploadPost(userProvider.uid ?? 'user Id', userProvider.name?? 'name');
+             if(status){
+               Navigator.pop(context);
+             }
            }
           },
         ),
