@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:insta_project/controllers/auth_ctr/authentication.dart';
 import 'package:insta_project/screens/home/home_screen.dart';
+import 'package:insta_project/screens/navigation/navigation_screen.dart';
 import 'package:insta_project/screens/register_screen.dart';
 import 'package:insta_project/utils/colors.dart';
 import 'package:insta_project/utils/dimensions.dart';
 import 'package:insta_project/widgets/credential_form_field.dart';
 import 'package:insta_project/widgets/custom_buttons.dart';
 import 'package:insta_project/widgets/small_text.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/user/user_provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -32,6 +36,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
   @override
   Widget build(BuildContext context) {
+    final userprovider  = Provider.of<UserProvider>(context);
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -56,16 +62,19 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: _passCtr,
                       obscure: true,
                     ),
+                    userprovider.isLoading ? Center(child: CircularProgressIndicator(),):
                     CustomButton(
                       text: 'Sign-In',
                       textColor: AppColors.whiteColor,
                       bold: true,
                       onpressed: ()async{
+                        userprovider.loadingStatus(true);
                         if(_formKey.currentState!.validate()){
                           bool reponse = await auth.signIn(email: _emailCtr.text, pass: _passCtr.text);
                           if(reponse){
-                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login Successfull')));
-                            Navigator.push(context, MaterialPageRoute(builder: (_)=>HomeScreen() ));
+                            userprovider.loadingStatus(false);
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login Successfull')));
+                            Navigator.push(context, MaterialPageRoute(builder: (_)=>NavigationScreen() ));
                           }
                         }
                       },
