@@ -8,6 +8,7 @@ class HomeAppbar extends StatelessWidget {
       padding:  EdgeInsets.symmetric(horizontal: Dimensions.width10, vertical: Dimensions.height10),
       child: Container(
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SvgImage(imgPath: 'images/logo.svg', imgColor: AppColors.mainWhiteColor, imgH: Dimensions.height60, imgW: Dimensions.width50),
             Expanded(
