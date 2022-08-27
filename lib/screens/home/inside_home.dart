@@ -18,7 +18,14 @@ class _InsideHomeState extends State<InsideHome> {
           SizedBox(height: Dimensions.height60,),
           HomeAppbar(),
           StatusBar(),
-          PostCard()
+          Expanded(
+              child: ListView.builder(
+                itemCount: 5,
+                  itemBuilder: (context, index){
+                    return PostCard();
+                  })
+          ),
+
 
         ],
       ),
