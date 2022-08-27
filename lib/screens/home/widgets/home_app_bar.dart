@@ -11,7 +11,7 @@ class HomeAppbar extends StatelessWidget {
           children: [
             SvgImage(imgPath: 'images/logo.svg', imgColor: AppColors.mainWhiteColor, imgH: Dimensions.height60, imgW: Dimensions.width50),
             Expanded(
-                child: SvgImage(imgPath: 'svgs/message.svg', imgColor: AppColors.mainWhiteColor, imgH: Dimensions.height60, imgW: Dimensions.width50)
+                child: SvgImage(imgPath: 'svgs/message.svg', imgColor: AppColors.mainWhiteColor, imgH: Dimensions.height30, imgW: Dimensions.width30)
             ),
           ],
         ),
