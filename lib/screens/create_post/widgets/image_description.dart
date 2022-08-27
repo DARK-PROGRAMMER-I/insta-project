@@ -22,6 +22,7 @@ class _ImageAndDescriptionState extends State<ImageAndDescription> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
+        postProvider.imageFile == null ? Utils.spinKit():
         Container(
           color: Colors.white,
           width: Dimensions.width50,

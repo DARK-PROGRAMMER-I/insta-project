@@ -6,7 +6,7 @@ class PostInfoAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final postProvider = Provider.of<PostProvider>(context);
-    final userProvider = Provider.of<UserModel>(context);
+    final userProvider = Provider.of<UserModel?>(context);
     final navProvider = Provider.of<NavigationProvider>(context);
     return AppBar(
       backgroundColor: AppColors.mobileBackgroundColor,
@@ -35,7 +35,7 @@ class PostInfoAppbar extends StatelessWidget {
           onPressed: ()async{
            if(postProvider.desText!.isNotEmpty){
              postProvider.getLoadingStatus(true);
-             bool status = await postProvider.uploadPost(userProvider.uid ?? 'user Id', userProvider.name?? 'name');
+             bool status = await postProvider.uploadPost(userProvider?.uid ?? 'user Id', userProvider?.name?? 'name');
              if(status){
                navProvider.selectedIndex(0);
                postProvider.getLoadingStatus(false);
