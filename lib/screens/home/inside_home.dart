@@ -18,6 +18,24 @@ class _InsideHomeState extends State<InsideHome> {
           SizedBox(height: Dimensions.height50,),
           HomeAppbar(),
 
+          Expanded(
+            child: ListView.builder(
+              itemCount: 6,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index){
+                return Padding(
+                padding: EdgeInsets.symmetric(horizontal: Dimensions.width10, vertical: Dimensions.height20),
+                child: Container(
+                  height: Dimensions.height50,
+                  width: Dimensions.width50,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.mainWhiteColor
+                  ),
+                ),
+              );
+            }),
+          )
         ],
       ),
 
