@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
-import 'package:uuid/uuid.dart';
+
 
 class PostStorage{
   FirebaseFirestore _store = FirebaseFirestore.instance;

@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:insta_project/models/user_model.dart';
+import 'package:insta_project/screens/navigation/nav_provider/navigation_provider.dart';
+import 'package:insta_project/screens/navigation/navigation_screen.dart';
 import 'package:insta_project/utils/utils.dart';
 import 'package:insta_project/widgets/small_text.dart';
 import '../../utils/dimensions.dart';
@@ -24,7 +26,7 @@ class PostInfoScreen extends StatefulWidget {
 class _PostInfoScreenState extends State<PostInfoScreen> {
   @override
   Widget build(BuildContext context) {
-
+    final postProvider = Provider.of<PostProvider>(context);
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.square(Dimensions.height70),
@@ -32,7 +34,8 @@ class _PostInfoScreenState extends State<PostInfoScreen> {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: Dimensions.width20, vertical: Dimensions.height10),
-        child: Column(
+        child: postProvider.isLoading! ? Center(child: Utils.spinKit(color: AppColors.mainWhiteColor),):
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ImageAndDescription(),

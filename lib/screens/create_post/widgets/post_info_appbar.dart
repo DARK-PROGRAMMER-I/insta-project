@@ -7,6 +7,7 @@ class PostInfoAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     final postProvider = Provider.of<PostProvider>(context);
     final userProvider = Provider.of<UserModel>(context);
+    final navProvider = Provider.of<NavigationProvider>(context);
     return AppBar(
       backgroundColor: AppColors.mobileBackgroundColor,
       leading: IconButton(
@@ -33,11 +34,16 @@ class PostInfoAppbar extends StatelessWidget {
           ),
           onPressed: ()async{
            if(postProvider.desText!.isNotEmpty){
-             Utils.spinKit(color: AppColors.mainWhiteColor);
+             postProvider.getLoadingStatus(true);
              bool status = await postProvider.uploadPost(userProvider.uid ?? 'user Id', userProvider.name?? 'name');
              if(status){
-               Navigator.pop(context);
+               navProvider.selectedIndex(0);
+               postProvider.getLoadingStatus(false);
+               postProvider.getImageFile(null);
+               Navigator.push(context, MaterialPageRoute(builder: (_)=> NavigationScreen()));
+
              }
+             postProvider.getLoadingStatus(false);
            }
           },
         ),
