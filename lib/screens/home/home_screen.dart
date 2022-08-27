@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:insta_project/widgets/small_text.dart';
 import 'package:insta_project/widgets/svg_image.dart';
 import 'package:provider/provider.dart';
 import 'package:insta_project/utils/dimensions.dart';

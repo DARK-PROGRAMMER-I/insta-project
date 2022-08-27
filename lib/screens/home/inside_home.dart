@@ -25,13 +25,24 @@ class _InsideHomeState extends State<InsideHome> {
               children: [
                 Row(
                   children: [
-                    Container(
-                      height: 40,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColors.mainWhiteColor
-                      ),
+                    Row(
+                      children: [
+                        Container(
+                          height: 40,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.redColor
+                          ),
+                        ),
+                        Column(
+                          children: [
+                            SmallText(name: 'account name', bold: true, size: Dimensions.height20,align: false,),
+                            SmallText(name: 'specialities', bold: false,align: false,)
+                          ],
+                        )
+                      ],
                     )
+
                   ],
                 )
               ],

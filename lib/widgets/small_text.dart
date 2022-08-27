@@ -12,7 +12,7 @@ class SmallText extends StatelessWidget {
       {required this.name,
         required this.bold,
         this.size = 0,
-        this.color = const Color(0xffa0a09f),
+        this.color = const Color(0xffffffff),
         this.height = 1.2,
         this.align = false,
       });
