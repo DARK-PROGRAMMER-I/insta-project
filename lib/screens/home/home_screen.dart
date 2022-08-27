@@ -12,6 +12,7 @@ import '../../utils/colors.dart';
 part 'inside_home.dart';
 part 'widgets/home_app_bar.dart';
 part 'widgets/status_bar.dart';
+part 'widgets/post_card.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
