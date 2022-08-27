@@ -16,6 +16,7 @@ class Dimensions{
   static double height60 = pageHeight /14.3;
   static double height65 = pageHeight /13.2;
   static double height70 = pageHeight /12.3;
+  static double height85 = pageHeight /(860/85);
   static double height40 = pageHeight /21.55;
   static double height30 = pageHeight /28.6;
   static double height35 = pageHeight /24.6;
