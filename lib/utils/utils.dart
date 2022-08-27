@@ -47,5 +47,7 @@ class Utils{
     color: color ?? AppColors.redColor,
     size: Dimensions.height20
   );
+
+
 }
 

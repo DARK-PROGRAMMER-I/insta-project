@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../models/user_model.dart';
+part of 'home_screen.dart';
 
 class InsideHome extends StatefulWidget {
   const InsideHome({Key? key}) : super(key: key);
@@ -16,9 +13,22 @@ class _InsideHomeState extends State<InsideHome> {
     UserModel? userprovider = Provider.of<UserModel?>(context);
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text(userprovider != null ? userprovider.name.toString() : 'user'),
-        )
+      body: Column(
+        children: [
+          SizedBox(height: Dimensions.height50,),
+          Padding(
+            padding:  EdgeInsets.symmetric(horizontal: Dimensions.width10, vertical: Dimensions.height10),
+            child: Container(
+              child: Row(
+                children: [
+                  SvgImage(imgPath: 'images/logo.svg', imgColor: AppColors.mainWhiteColor, imgH: Dimensions.height60, imgW: Dimensions.width50)
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+
     );
   }
 }

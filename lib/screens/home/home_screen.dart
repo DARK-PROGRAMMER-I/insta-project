@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:insta_project/providers/user/user_provider.dart';
-import 'package:insta_project/screens/home/inside_home.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:insta_project/widgets/svg_image.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
+import 'package:insta_project/utils/dimensions.dart';
 import 'package:provider/provider.dart';
 
+import '../../models/user_model.dart';
 import '../../controllers/auth_ctr/authentication.dart';
 import '../../models/user_model.dart';
+import '../../utils/colors.dart';
 
+part 'inside_home.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
