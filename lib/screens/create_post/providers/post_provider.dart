@@ -106,7 +106,7 @@ class PostProvider with ChangeNotifier{
     _store.collection('posts');
   }
 
-  Future<bool> uploadPost(String uid, String userName)async{
+  Future<bool> uploadPost(String uid, String userName, String profImage)async{
     try{
       String? postImageUrl =await StorageMethod().uploadImagetoStorage('postPics', imageFile!, true);
       String postuid = Uuid().v1();
@@ -118,6 +118,7 @@ class PostProvider with ChangeNotifier{
         likes: [],
         postId: postuid,
         postImgUrl: postImageUrl,
+        profImage:profImage,
       );
 
       PostStorage().postThePost(post.toJson(), postuid);

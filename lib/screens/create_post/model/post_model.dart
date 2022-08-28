@@ -9,10 +9,11 @@ class PostModel {
   final List? likes;
   final String ?postImgUrl;
   final DateTime? dateCreated;
+  final String? profImage;
 
   PostModel({
 
-
+    this.profImage,
     this.name,
     this.uid,
     this.postId,

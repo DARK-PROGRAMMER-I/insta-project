@@ -35,7 +35,7 @@ class PostInfoAppbar extends StatelessWidget {
           onPressed: ()async{
            if(postProvider.desText!.isNotEmpty){
              postProvider.getLoadingStatus(true);
-             bool status = await postProvider.uploadPost(userProvider?.uid ?? 'user Id', userProvider?.name?? 'name');
+             bool status = await postProvider.uploadPost(userProvider?.uid ?? 'user Id', userProvider?.name?? 'name', userProvider?.imgUrl ?? 'https://www.bing.com/ck/a?!&&p=6f1d8d0761238f38JmltdHM9MTY2MTY5OTk0NSZpZ3VpZD1iOGRhNGRjMS1hYmVlLTQ3ZjQtOGE2ZS1jNGE1ZGFlYWI3YWEmaW5zaWQ9NTQ1OQ&ptn=3&hsh=3&fclid=c0fcedaf-26e4-11ed-9e78-e2d9d2b2de7b&u=a1L2ltYWdlcy9zZWFyY2g_cT1Qcm9maWxlJTIwSWNvbiZGT1JNPUlRRlJCQSZpZD04NzgwOUIzMjE1NjM0RDc2Qzc2MEY1MUU5ODg5RjY4Qjg2QzFBNDE4&ntb=1' );
              if(status){
                navProvider.selectedIndex(0);
                postProvider.getLoadingStatus(false);
