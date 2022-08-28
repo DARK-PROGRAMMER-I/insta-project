@@ -32,6 +32,7 @@ class PostModel {
     'likes' : [],
     'postImgUrl': postImgUrl ,
     'dateCreated' : dateCreated,
+    'profImage' : profImage
   };
 
   PostModel fromJson(DocumentSnapshot snapshot){
@@ -43,7 +44,8 @@ class PostModel {
         postId: snap['postId'],
         likes: snap['likes'],
         postImgUrl: snap['postImgUrl'],
-        dateCreated: snap['dateCreated']
+        dateCreated: snap['dateCreated'],
+        profImage: snap['profImage']
     );
   }
 

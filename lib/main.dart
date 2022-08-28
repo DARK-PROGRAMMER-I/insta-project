@@ -12,7 +12,7 @@ import 'package:insta_project/responsive/responsive.dart';
 import 'package:insta_project/responsive/web_screen.dart';
 import 'package:insta_project/screens/create_post/providers/post_provider.dart';
 import 'package:insta_project/screens/home/home_screen.dart';
-import 'package:insta_project/screens/login_screen.dart';
+import 'package:insta_project/screens/auth/login_screen.dart';
 import 'package:insta_project/utils/colors.dart';
 import 'package:provider/provider.dart';
 

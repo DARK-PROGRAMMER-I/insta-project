@@ -8,7 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:insta_project/controllers/auth_ctr/authentication.dart';
 import 'package:insta_project/main.dart';
 import 'package:insta_project/providers/user/user_provider.dart';
-import 'package:insta_project/screens/login_screen.dart';
+import 'package:insta_project/screens/auth/login_screen.dart';
 import 'package:insta_project/utils/colors.dart';
 import 'package:insta_project/utils/dimensions.dart';
 import 'package:insta_project/utils/utils.dart';
@@ -17,9 +17,9 @@ import 'package:insta_project/widgets/custom_buttons.dart';
 import 'package:insta_project/widgets/small_text.dart';
 import 'package:provider/provider.dart';
 
-import '../responsive/mobile_screen.dart';
-import '../responsive/responsive.dart';
-import '../responsive/web_screen.dart';
+import '../../responsive/mobile_screen.dart';
+import '../../responsive/responsive.dart';
+import '../../responsive/web_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);

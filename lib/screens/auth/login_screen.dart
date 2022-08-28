@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:insta_project/controllers/auth_ctr/authentication.dart';
-import 'package:insta_project/screens/home/home_screen.dart';
+import 'package:insta_project/screens/auth/register_screen.dart';
 import 'package:insta_project/screens/navigation/navigation_screen.dart';
-import 'package:insta_project/screens/register_screen.dart';
 import 'package:insta_project/utils/colors.dart';
 import 'package:insta_project/utils/dimensions.dart';
 import 'package:insta_project/widgets/credential_form_field.dart';
@@ -11,7 +10,7 @@ import 'package:insta_project/widgets/custom_buttons.dart';
 import 'package:insta_project/widgets/small_text.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/user/user_provider.dart';
+import '../../providers/user/user_provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
