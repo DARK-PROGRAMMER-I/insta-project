@@ -9,6 +9,7 @@ class PostCard extends StatefulWidget {
 class _PostCardState extends State<PostCard> {
   @override
   Widget build(BuildContext context) {
+    UserModel? userprovider = Provider.of<UserModel?>(context);
     return Expanded(
       child: ListView.builder(
         physics: BouncingScrollPhysics(),
@@ -90,8 +91,52 @@ class _PostCardState extends State<PostCard> {
                           imgH: Dimensions.height25,
                           imgW: Dimensions.width25),
                     ],
-                  )
+                  ),
+                  SizedBox(height: Dimensions.height5,),
+                  SmallText(name: '242 Likes', bold: true
+                  ),
+                  SizedBox(height: Dimensions.height5,),
+                  Row(
+                    children: [
+                      SmallText(name: 'Name', bold: true
+                      ),
+                      SizedBox(width: Dimensions.width5,),
+                      SmallText(name: 'Description', bold: false
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: Dimensions.height5,),
+                  SmallText(name: 'View all 3 comments', bold: false, color: AppColors.greyColor,),
+                  SizedBox(height: Dimensions.height5,),
+                  Row(
+                    children: [
+                      Container(
+                        height: Dimensions.height40,
+                        width: Dimensions.width40,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle
+                        ),
+                        child: CachedNetworkImage(
+                          imageUrl: userprovider?.imgUrl ??  "https://img.freepik.com/free-vector/gradient-people-planting-tree-illustration_23-2149202056.jpg?w=1060&t=st=1661621684~exp=1661622284~hmac=4bc93d984937c2eba479b8e8a1bac112aa1afe84ae0368730ebbf31002c17b2f",
+                          height: Dimensions.height40,
+                          width: Dimensions.width40,
+                          placeholder: (context, url) =>
+                              Center(child: CircularProgressIndicator()),
+                          errorWidget: (context, url, error) => Icon(Icons.error),
+                        ),
+                      ),
+                      ClipRRect(
 
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image(
+                          image: NetworkImage(
+                              'https://www.tutorialkart.com/img/hummingbird.png'),
+                        ),
+                      ),
+
+                    ],
+                  )
                 ],
               ),
             ),
