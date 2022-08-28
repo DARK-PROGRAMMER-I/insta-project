@@ -8,11 +8,12 @@ class LoadingGif extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Center(
-          child: Image(
-            image: NetworkImage('https://th.bing.com/th/id/R.60e72028b41866ae64c5bd4711f81474?rik=5ed1XByDSyID5A&pid=ImgRaw&r=0'),
-          ),
+          child: SvgImage(imgPath: 'svgs/hello.svg', imgColor: null, imgH: Dimensions.height400, imgW: Dimensions.pageWidth)
         ),
       ),
     );
   }
 }
+//Image(
+//             image: NetworkImage('https://th.bing.com/th/id/R.60e72028b41866ae64c5bd4711f81474?rik=5ed1XByDSyID5A&pid=ImgRaw&r=0'),
+//           ),

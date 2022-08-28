@@ -98,7 +98,7 @@ class _PostCardState extends State<PostCard> {
                   SizedBox(height: Dimensions.height5,),
                   Row(
                     children: [
-                      SmallText(name: 'Name', bold: true
+                      SmallText(name: 'Account Name', bold: true
                       ),
                       SizedBox(width: Dimensions.width5,),
                       SmallText(name: 'Description', bold: false
@@ -110,13 +110,8 @@ class _PostCardState extends State<PostCard> {
                   SizedBox(height: Dimensions.height5,),
                   Row(
                     children: [
-                      Container(
-                        height: Dimensions.height40,
-                        width: Dimensions.width40,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle
-                        ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(Dimensions.radius25),
                         child: CachedNetworkImage(
                           imageUrl: userprovider?.imgUrl ??  "https://img.freepik.com/free-vector/gradient-people-planting-tree-illustration_23-2149202056.jpg?w=1060&t=st=1661621684~exp=1661622284~hmac=4bc93d984937c2eba479b8e8a1bac112aa1afe84ae0368730ebbf31002c17b2f",
                           height: Dimensions.height40,
@@ -126,13 +121,15 @@ class _PostCardState extends State<PostCard> {
                           errorWidget: (context, url, error) => Icon(Icons.error),
                         ),
                       ),
-                      ClipRRect(
-
-                        borderRadius: BorderRadius.circular(20),
-                        child: Image(
-                          image: NetworkImage(
-                              'https://www.tutorialkart.com/img/hummingbird.png'),
-                        ),
+                      SizedBox(width: Dimensions.width10,),
+                      Expanded(
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              enabledBorder: InputBorder.none,
+                              disabledBorder: InputBorder.none,
+                              hintText: 'Add a Comment'
+                            ),
+                          ),
                       ),
 
                     ],

@@ -11,6 +11,7 @@ import 'package:insta_project/screens/navigation/nav_provider/navigation_provide
 import 'package:insta_project/screens/navigation/navigation_screen.dart';
 import 'package:insta_project/utils/colors.dart';
 import 'package:insta_project/utils/utils.dart';
+import 'package:insta_project/widgets/svg_image.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:provider/provider.dart';
 import '../../utils/dimensions.dart';
