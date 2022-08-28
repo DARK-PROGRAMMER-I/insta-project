@@ -10,7 +10,6 @@ class InsideHome extends StatefulWidget {
 class _InsideHomeState extends State<InsideHome> {
   @override
   Widget build(BuildContext context) {
-    UserModel? userprovider = Provider.of<UserModel?>(context);
 
     return Scaffold(
       body: Column(
@@ -19,8 +18,6 @@ class _InsideHomeState extends State<InsideHome> {
           HomeAppbar(),
           StatusBar(),
           PostCard(),
-
-
         ],
       ),
 
