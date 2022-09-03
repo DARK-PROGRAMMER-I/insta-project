@@ -102,8 +102,7 @@ class PostProvider with ChangeNotifier{
 
   // Get image and store it in firebase
   postImage(String uid, String userName)async{
-    FirebaseFirestore _store = FirebaseFirestore.instance;
-    _store.collection('posts');
+
   }
 
   Future<bool> uploadPost(String uid, String userName, String profImage)async{
@@ -116,6 +115,7 @@ class PostProvider with ChangeNotifier{
         dateCreated: DateTime.now(),
         description: desText,
         likes: [],
+        comments: [],
         postId: postuid,
         postImgUrl: postImageUrl,
         profImage:profImage,

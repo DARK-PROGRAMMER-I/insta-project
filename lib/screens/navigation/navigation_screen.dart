@@ -21,10 +21,10 @@ class NavigationScreen extends StatefulWidget {
 class _NavigationScreenState extends State<NavigationScreen> {
   List<Widget> _pages = [
     HomeScreen(),
-    HomeScreen(),
+    Center(child: Text('search')),
     CreatePostScreen(),
-    HomeScreen(),
-    HomeScreen(),
+    Center(child: Text('Likes')),
+    Center(child: Text('Profile')),
   ];
   @override
   Widget build(BuildContext context) {

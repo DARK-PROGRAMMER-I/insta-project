@@ -7,6 +7,7 @@ class PostModel {
   final String? description;
   final String? uid;
   final List? likes;
+  final List? comments;
   final String ?postImgUrl;
   final DateTime? dateCreated;
   final String? profImage;
@@ -21,6 +22,7 @@ class PostModel {
     this.description,
     this.postImgUrl,
     this.dateCreated,
+    this.comments
   });
 
   Map<String, dynamic> toJson() => {
@@ -30,6 +32,7 @@ class PostModel {
     'description': description ,
     'uid': uid ,
     'likes' : [],
+    'comments' : [],
     'postImgUrl': postImgUrl ,
     'dateCreated' : dateCreated,
     'profImage' : profImage
@@ -43,8 +46,9 @@ class PostModel {
         uid: snap['uid'],
         postId: snap['postId'],
         likes: snap['likes'],
+        comments: snap['comments'],
         postImgUrl: snap['postImgUrl'],
-        dateCreated: snap['dateCreated'],
+        dateCreated: snap['dateCreated'].toDate(),
         profImage: snap['profImage']
     );
   }

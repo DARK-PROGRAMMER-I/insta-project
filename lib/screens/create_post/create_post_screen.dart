@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:insta_project/screens/create_post/model/post_model.dart';
 import 'package:insta_project/screens/create_post/post_info_screen.dart';
 import 'package:insta_project/screens/create_post/providers/post_provider.dart';
 import 'package:insta_project/screens/create_post/widgets/asset_holder.dart';
@@ -22,6 +24,7 @@ part 'widgets/image_container.dart';
 part 'widgets/gif_file.dart';
 part 'widgets/crop_icon.dart';
 part 'widgets/loading_gif.dart';
+part 'streams/post_streams.dart';
 
 
 class CreatePostScreen extends StatefulWidget {

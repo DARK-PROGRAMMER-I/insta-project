@@ -1,4 +1,4 @@
-part of '../home_screen.dart';
+part of '../inside_home.dart';
 class HomeAppbar extends StatelessWidget {
   const HomeAppbar({Key? key}) : super(key: key);
 

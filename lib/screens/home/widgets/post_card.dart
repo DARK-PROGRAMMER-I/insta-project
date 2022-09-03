@@ -1,4 +1,4 @@
-part of '../home_screen.dart';
+part of '../inside_home.dart';
 class PostCard extends StatefulWidget {
   const PostCard({Key? key}) : super(key: key);
 
@@ -9,11 +9,12 @@ class PostCard extends StatefulWidget {
 class _PostCardState extends State<PostCard> {
   @override
   Widget build(BuildContext context) {
-    UserModel? userprovider = Provider.of<UserModel?>(context);
-    return Expanded(
+    final postProvider = Provider.of<List<PostModel?>?>(context);
+
+    return postProvider != null ? Expanded(
       child: ListView.builder(
         physics: BouncingScrollPhysics(),
-        itemCount: 5,
+        itemCount: postProvider.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.symmetric(
@@ -28,12 +29,15 @@ class _PostCardState extends State<PostCard> {
                     children: [
                       Row(
                         children: [
-                          Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: AppColors.mainWhiteColor
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(Dimensions.radius25),
+                            child: CachedNetworkImage(
+                              imageUrl: postProvider[index]!.profImage!,
+                              height: Dimensions.height40,
+                              width: Dimensions.width40,
+                              placeholder: (context, url) =>
+                                  Center(child: CircularProgressIndicator()),
+                              errorWidget: (context, url, error) => Icon(Icons.error),
                             ),
                           ),
                           SizedBox(width: Dimensions.width10,),
@@ -41,7 +45,7 @@ class _PostCardState extends State<PostCard> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SmallText(name: 'account name',
+                              SmallText(name: postProvider[index]!.name!,
                                 bold: true,
                                 size: Dimensions.height20,
                                 align: false,),
@@ -59,7 +63,7 @@ class _PostCardState extends State<PostCard> {
                   ),
                   SizedBox(height: Dimensions.height20,),
                   CachedNetworkImage(
-                    imageUrl: "https://img.freepik.com/free-vector/gradient-people-planting-tree-illustration_23-2149202056.jpg?w=1060&t=st=1661621684~exp=1661622284~hmac=4bc93d984937c2eba479b8e8a1bac112aa1afe84ae0368730ebbf31002c17b2f",
+                    imageUrl: postProvider[index]!.postImgUrl!,
                     placeholder: (context, url) =>
                         Center(child: CircularProgressIndicator()),
                     errorWidget: (context, url, error) => Icon(Icons.error),
@@ -93,27 +97,28 @@ class _PostCardState extends State<PostCard> {
                     ],
                   ),
                   SizedBox(height: Dimensions.height5,),
-                  SmallText(name: '242 Likes', bold: true
+                  SmallText(name: postProvider[index]!.likes?.length == 0? '0 Likes' : postProvider[index]!.likes!.length.toString(), bold: true
                   ),
                   SizedBox(height: Dimensions.height5,),
                   Row(
                     children: [
-                      SmallText(name: 'Account Name', bold: true
+                      SmallText(name: postProvider[index]!.name!, bold: true
                       ),
                       SizedBox(width: Dimensions.width5,),
-                      SmallText(name: 'Description', bold: false
+                      SmallText(name:  postProvider[index]!.description!, bold: false
                       ),
                     ],
                   ),
                   SizedBox(height: Dimensions.height5,),
-                  SmallText(name: 'View all 3 comments', bold: false, color: AppColors.greyColor,),
+                  postProvider[index]!.comments?.length == 0 ? SizedBox.shrink() :
+                  SmallText(name: 'View all ${postProvider[index]!.comments!.length.toString() } comments', bold: false, color: AppColors.greyColor,),
                   SizedBox(height: Dimensions.height5,),
                   Row(
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(Dimensions.radius25),
                         child: CachedNetworkImage(
-                          imageUrl: userprovider?.imgUrl ??  "https://img.freepik.com/free-vector/gradient-people-planting-tree-illustration_23-2149202056.jpg?w=1060&t=st=1661621684~exp=1661622284~hmac=4bc93d984937c2eba479b8e8a1bac112aa1afe84ae0368730ebbf31002c17b2f",
+                          imageUrl: postProvider[index]!.profImage!,
                           height: Dimensions.height40,
                           width: Dimensions.width40,
                           placeholder: (context, url) =>
@@ -131,7 +136,6 @@ class _PostCardState extends State<PostCard> {
                             ),
                           ),
                       ),
-
                     ],
                   )
                 ],
@@ -140,6 +144,8 @@ class _PostCardState extends State<PostCard> {
           );
         }
         ),
-    );
+    ) :
+    Center(child: Utils.spinKit(),)
+    ;
   }
 }

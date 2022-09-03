@@ -37,7 +37,9 @@ class _ImageAndDescriptionState extends State<ImageAndDescription> {
               contentPadding: EdgeInsets.symmetric(horizontal: Dimensions.width20, vertical: Dimensions.height30),
               disabledBorder: InputBorder.none,
               enabledBorder: InputBorder.none,
+
             ),
+            textInputAction: TextInputAction.newline,
             onChanged: (val){
               postProvider.getDesText(val);
             },

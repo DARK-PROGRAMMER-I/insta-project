@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -5,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:insta_project/controllers/auth_ctr/authentication.dart';
 import 'package:insta_project/models/user_model.dart';
+import 'package:insta_project/screens/create_post/create_post_screen.dart';
+import 'package:insta_project/screens/create_post/model/post_model.dart';
+import 'package:insta_project/screens/home/inside_home.dart';
 import 'package:insta_project/screens/navigation/nav_provider/navigation_provider.dart';
 import 'package:insta_project/providers/user/user_provider.dart';
 import 'package:insta_project/responsive/mobile_screen.dart';
@@ -48,6 +52,14 @@ class MyApp extends StatelessWidget {
         StreamProvider<UserModel?>.value(
             initialData: null,
             value: Auth().userData,
+        ),
+        StreamProvider<List<PostModel>?>.value(
+          initialData: null,
+          value: PostStreams().getPosts,
+          child: ResponsiveLayout(
+            webScreenLayout: WebScreen(),
+            mobileScreenLayout: MobileScreen(),
+          ),
         )
 
       ],

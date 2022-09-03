@@ -1,4 +1,4 @@
-part of '../home_screen.dart';
+part of '../inside_home.dart';
 class StatusBar extends StatefulWidget {
   const StatusBar({Key? key}) : super(key: key);
 
