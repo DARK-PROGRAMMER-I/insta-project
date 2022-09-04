@@ -9,6 +9,7 @@ import 'package:insta_project/models/user_model.dart';
 import 'package:insta_project/screens/create_post/create_post_screen.dart';
 import 'package:insta_project/screens/create_post/model/post_model.dart';
 import 'package:insta_project/screens/home/inside_home.dart';
+import 'package:insta_project/screens/home/provider/home_provider.dart';
 import 'package:insta_project/screens/navigation/nav_provider/navigation_provider.dart';
 import 'package:insta_project/providers/user/user_provider.dart';
 import 'package:insta_project/responsive/mobile_screen.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => NavigationProvider()),
         ChangeNotifierProvider(create: (_) => PostProvider()),
+        ChangeNotifierProvider(create: (_) => HomeProvider()),
         StreamProvider<UserModel?>.value(
             initialData: null,
             value: Auth().userData,

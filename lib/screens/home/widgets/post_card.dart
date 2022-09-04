@@ -1,4 +1,17 @@
-part of '../inside_home.dart';
+// part of '../inside_home.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../utils/colors.dart';
+import '../../../utils/dimensions.dart';
+import '../../../utils/utils.dart';
+import '../../../widgets/small_text.dart';
+import '../../../widgets/svg_image.dart';
+import '../../create_post/model/post_model.dart';
+import '../inside_home.dart';
+import '../provider/home_provider.dart';
+
 class PostCard extends StatefulWidget {
   const PostCard({Key? key}) : super(key: key);
 
@@ -10,6 +23,7 @@ class _PostCardState extends State<PostCard> {
   @override
   Widget build(BuildContext context) {
     final postProvider = Provider.of<List<PostModel?>?>(context);
+    final homeProvider = Provider.of<HomeProvider>(context);
 
     return postProvider != null ? Expanded(
       child: ListView.builder(
@@ -74,7 +88,21 @@ class _PostCardState extends State<PostCard> {
                     children: [
                       Row(
                         children: [
-                          SvgImage(imgPath: 'svgs/like.svg',
+                          homeProvider.liked! ? SvgImage(
+                              ontap: (){
+                                homeProvider.getLikedStatus(false);
+                              },
+                              imgPath: 'svgs/heart_inside.svg',
+                              imgColor: AppColors.mainWhiteColor,
+                              imgH: Dimensions.height25,
+                              imgW: Dimensions.width25) :
+                          SvgImage(
+                              ontap: (){
+                                // print('hello');
+                                homeProvider.getLikedStatus(true);
+
+                              },
+                              imgPath: 'svgs/like.svg',
                               imgColor: AppColors.mainWhiteColor,
                               imgH: Dimensions.height25,
                               imgW: Dimensions.width25),

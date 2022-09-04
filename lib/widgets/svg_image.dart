@@ -7,9 +7,11 @@ class SvgImage extends StatelessWidget {
   final Color? imgColor;
   final double? imgH;
   final double? imgW;
+  final VoidCallback? ontap;
 
-  const SvgImage({
+  SvgImage({
     Key? key,
+    this.ontap,
     required this.imgPath,
     required this.imgColor,
     required this.imgH,
@@ -18,6 +20,8 @@ class SvgImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset('assets/${imgPath}', color: imgColor, height: imgH, width: imgW,);
+    return GestureDetector(
+        onTap: ontap ?? (){},
+        child: SvgPicture.asset('assets/${imgPath}', color: imgColor, height: imgH, width: imgW,));
   }
 }
