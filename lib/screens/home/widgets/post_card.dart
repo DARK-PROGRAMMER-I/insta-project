@@ -98,9 +98,7 @@ class _PostCardState extends State<PostCard> {
                               imgW: Dimensions.width25) :
                           SvgImage(
                               ontap: (){
-                                // print('hello');
                                 homeProvider.getLikedStatus(true);
-
                               },
                               imgPath: 'svgs/like.svg',
                               imgColor: AppColors.mainWhiteColor,
