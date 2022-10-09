@@ -102,7 +102,7 @@ class _PostCardState extends State<PostCard> {
                             onEnd: (){
                               homeProvider.getLikeAnimationStatus(false);
                             },
-                            duration: Duration(milliseconds: 400),
+                            duration: Duration(milliseconds: 500),
                           ),
                         )
                       ],
