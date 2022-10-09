@@ -28,7 +28,7 @@ class _LikeAnimationState extends State<LikeAnimation> with TickerProviderStateM
   @override
   void initState() {
     _controller = AnimationController(vsync: this, duration: Duration(milliseconds: widget.duration.inMilliseconds ~/ 2 ));
-    _scale = Tween<double>(end: 1, begin: 1.2).animate(_controller);
+    _scale = Tween<double>(end: 1, begin: 2).animate(_controller);
     super.initState();
   }
 
@@ -45,7 +45,7 @@ class _LikeAnimationState extends State<LikeAnimation> with TickerProviderStateM
     if(widget.isAnimating || widget.smallLike){
       _controller.forward();
       _controller.reverse();
-      Future.delayed(Duration(milliseconds: 200));
+      Future.delayed(Duration(milliseconds: 10));
 
       if(widget.onEnd != null){
         widget.onEnd();
