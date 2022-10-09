@@ -101,10 +101,6 @@ class PostProvider with ChangeNotifier{
   }
 
   // Get image and store it in firebase
-  postImage(String uid, String userName)async{
-
-  }
-
   Future<bool> uploadPost(String uid, String userName, String profImage)async{
     try{
       String? postImageUrl =await StorageMethod().uploadImagetoStorage('postPics', imageFile!, true);

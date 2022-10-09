@@ -1,6 +1,7 @@
 // part of '../inside_home.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../../utils/colors.dart';
@@ -24,7 +25,7 @@ class _PostCardState extends State<PostCard> {
   Widget build(BuildContext context) {
     final postProvider = Provider.of<List<PostModel?>?>(context);
     final homeProvider = Provider.of<HomeProvider>(context);
-
+print(postProvider?[0]?.profImage);
     return postProvider != null ? Expanded(
       child: ListView.builder(
         physics: BouncingScrollPhysics(),
@@ -138,6 +139,11 @@ class _PostCardState extends State<PostCard> {
                   SizedBox(height: Dimensions.height5,),
                   postProvider[index]!.comments?.length == 0 ? SizedBox.shrink() :
                   SmallText(name: 'View all ${postProvider[index]!.comments!.length.toString() } comments', bold: false, color: AppColors.greyColor,),
+
+                  SizedBox(height: Dimensions.height5,),
+                  Container(
+                    child: SmallText(name: DateFormat.yMMMd().format(postProvider[index]!.dateCreated!), bold: false,),
+                  ),
                   SizedBox(height: Dimensions.height5,),
                   Row(
                     children: [

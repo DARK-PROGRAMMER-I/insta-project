@@ -30,7 +30,7 @@ class Auth{
       User? user = creds.user;
       String? imgUrl =
       await StorageMethod().uploadImagetoStorage('profilePics', file, false);
-      print(imgUrl);
+      // print(imgUrl);
 
       UserModel model = UserModel(
         imgUrl: imgUrl,

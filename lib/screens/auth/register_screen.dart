@@ -131,7 +131,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     bio: _bioCtr.text,
                                     file: File(image!.path)
                                 );
-                                print(response);
+                                // print(response);
                                 if(response){
                                   userprovider.loadingStatus(false);
                                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign-up Successfull')));
