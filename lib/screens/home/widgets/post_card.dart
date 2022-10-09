@@ -26,15 +26,16 @@ class _PostCardState extends State<PostCard> {
   Widget build(BuildContext context) {
     final postProvider = Provider.of<List<PostModel?>?>(context);
     final homeProvider = Provider.of<HomeProvider>(context);
-print(postProvider?[0]?.profImage);
+
     return postProvider != null ? Expanded(
       child: ListView.builder(
         physics: BouncingScrollPhysics(),
         itemCount: postProvider.length,
+        padding: EdgeInsets.all(0),
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: Dimensions.width10, vertical: Dimensions.height10),
+                horizontal: Dimensions.width10, vertical: Dimensions.height20),
             child: Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -78,14 +79,30 @@ print(postProvider?[0]?.profImage);
                     ],
                   ),
                   SizedBox(height: Dimensions.height20,),
-                  GestureDetector(
-                    onDoubleTap: ,
-                    child: CachedNetworkImage(
-                      imageUrl: postProvider[index]!.postImgUrl!,
-                      placeholder: (context, url) =>
-                          Center(child: CircularProgressIndicator()),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
-                    ),
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      CachedNetworkImage(
+                        imageUrl: postProvider[index]!.postImgUrl!,
+                        placeholder: (context, url) =>
+                            Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ),
+                      GestureDetector(
+                        onDoubleTap: (){
+                          homeProvider.getLikeAnimationStatus(true);
+                        },
+                        child: LikeAnimation(
+                          child: Icon(Icons.favorite, color: Colors.white,size: 50,),
+                          isAnimating: homeProvider.isLikeAniamtion,
+                          smallLike: false,
+                          onEnd: (){
+                            homeProvider.getLikeAnimationStatus(true);
+                          },
+                          duration: Duration(milliseconds: 400),
+                        ),
+                      )
+                    ],
                   ),
                   SizedBox(height: Dimensions.height10,),
                   Row(

@@ -9,4 +9,11 @@ class HomeProvider with ChangeNotifier{
     print(status);
     notifyListeners();
   }
+
+  bool _isLikeAniamtion = false;
+  bool get isLikeAniamtion => _isLikeAniamtion;
+  getLikeAnimationStatus(bool status){
+    _isLikeAniamtion = status;
+    notifyListeners();
+  }
 }
