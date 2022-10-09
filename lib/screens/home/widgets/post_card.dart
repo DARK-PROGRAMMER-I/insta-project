@@ -1,6 +1,7 @@
 // part of '../inside_home.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:insta_project/screens/home/widgets/animation_widget.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -77,11 +78,14 @@ print(postProvider?[0]?.profImage);
                     ],
                   ),
                   SizedBox(height: Dimensions.height20,),
-                  CachedNetworkImage(
-                    imageUrl: postProvider[index]!.postImgUrl!,
-                    placeholder: (context, url) =>
-                        Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  GestureDetector(
+                    onDoubleTap: ,
+                    child: CachedNetworkImage(
+                      imageUrl: postProvider[index]!.postImgUrl!,
+                      placeholder: (context, url) =>
+                          Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                    ),
                   ),
                   SizedBox(height: Dimensions.height10,),
                   Row(
