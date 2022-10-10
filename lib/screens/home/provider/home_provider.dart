@@ -47,4 +47,13 @@ class HomeProvider with ChangeNotifier{
       print(e.toString());
     }
   }
+
+  postComment({
+   required String postId,
+   required String comment,
+   required String userName,
+
+  })async{
+
+  }
 }
