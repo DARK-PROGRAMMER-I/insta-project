@@ -22,6 +22,10 @@ class Auth{
         .map(_getUserData);
   }
 
+  String? getUserId(){
+    return _auth.currentUser?.uid;
+  }
+
   Future<bool> signUp({required String name, required String email, required String pass,required String bio, required File file})async{
 
     try{
@@ -42,7 +46,7 @@ class Auth{
         name: name,
       );
 
-      await fire_store.collection('user').doc(creds.user!.uid).set(model.toJson());
+      await fire_store.collection('user').doc(creds.user!.uid).set(model.toJson(),); // SetOptions(merge: true)
       userData;
       print('Success');
       return true;

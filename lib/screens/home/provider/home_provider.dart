@@ -1,7 +1,12 @@
-// part of '../inside_home.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import 'package:insta_project/controllers/auth_ctr/authentication.dart';
 
 class HomeProvider with ChangeNotifier{
+  HomeProvider(){
+    getUserId();
+  }
+
   bool? _liked = false;
   bool? get liked => _liked;
   getLikedStatus(bool? status){
@@ -15,5 +20,18 @@ class HomeProvider with ChangeNotifier{
   getLikeAnimationStatus(bool status){
     _isLikeAniamtion = status;
     notifyListeners();
+  }
+
+  String? userId;
+  getUserId(){
+    Auth auth = Auth();
+    userId = auth.getUserId();
+    notifyListeners();
+  }
+
+  updateLikes({required String postId, required String uid, required List likes}){
+    FirebaseFirestore fire_store = FirebaseFirestore.instance;
+
+    // If userId is already present, we need to remove it to remove like.
   }
 }

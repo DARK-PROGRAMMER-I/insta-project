@@ -1,7 +1,11 @@
 // part of '../inside_home.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:insta_project/controllers/auth_ctr/authentication.dart';
+import 'package:insta_project/screens/home/post_data.dart';
 import 'package:insta_project/screens/home/widgets/animation_widget.dart';
+import 'package:insta_project/screens/home/widgets/post_bottom.dart';
+import 'package:insta_project/screens/home/widgets/post_header.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -22,10 +26,13 @@ class PostCard extends StatefulWidget {
 }
 
 class _PostCardState extends State<PostCard> {
+
+
   @override
   Widget build(BuildContext context) {
     final postProvider = Provider.of<List<PostModel?>?>(context);
     final homeProvider = Provider.of<HomeProvider>(context);
+
 
     return postProvider != null ? Expanded(
       child: ListView.builder(
@@ -41,43 +48,7 @@ class _PostCardState extends State<PostCard> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(Dimensions.radius25),
-                            child: CachedNetworkImage(
-                              imageUrl: postProvider[index]!.profImage!,
-                              height: Dimensions.height40,
-                              width: Dimensions.width40,
-                              placeholder: (context, url) =>
-                                  Center(child: CircularProgressIndicator()),
-                              errorWidget: (context, url, error) => Icon(Icons.error),
-                            ),
-                          ),
-                          SizedBox(width: Dimensions.width10,),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SmallText(name: postProvider[index]!.name!,
-                                bold: true,
-                                size: Dimensions.height20,
-                                align: false,),
-                              SmallText(
-                                name: 'specialities', bold: false, align: false,)
-                            ],
-                          ),
-                        ],
-                      ),
-                      SvgImage(imgPath: 'svgs/menu_dots.svg',
-                          imgColor: AppColors.mainWhiteColor,
-                          imgH: Dimensions.height20,
-                          imgW: Dimensions.width30),
-                    ],
-                  ),
+                  PostHeader(index: index),
                   SizedBox(height: Dimensions.height20,),
                   GestureDetector(
                     onDoubleTap: (){
@@ -109,45 +80,7 @@ class _PostCardState extends State<PostCard> {
                     ),
                   ),
                   SizedBox(height: Dimensions.height10,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          homeProvider.liked! ? SvgImage(
-                              ontap: (){
-                                homeProvider.getLikedStatus(false);
-                              },
-                              imgPath: 'svgs/heart_inside.svg',
-                              imgColor: AppColors.mainWhiteColor,
-                              imgH: Dimensions.height25,
-                              imgW: Dimensions.width25) :
-                          SvgImage(
-                              ontap: (){
-                                homeProvider.getLikedStatus(true);
-                              },
-                              imgPath: 'svgs/like.svg',
-                              imgColor: AppColors.mainWhiteColor,
-                              imgH: Dimensions.height25,
-                              imgW: Dimensions.width25),
-                          SizedBox(width: Dimensions.width10,),
-                          SvgImage(imgPath: 'svgs/comment1.svg',
-                              imgColor: AppColors.mainWhiteColor,
-                              imgH: Dimensions.height30,
-                              imgW: Dimensions.width30),
-                          SizedBox(width: Dimensions.width10,),
-                          SvgImage(imgPath: 'svgs/share.svg',
-                              imgColor: AppColors.mainWhiteColor,
-                              imgH: Dimensions.height25,
-                              imgW: Dimensions.width25),
-                        ],
-                      ),
-                      SvgImage(imgPath: 'svgs/save.svg',
-                          imgColor: AppColors.mainWhiteColor,
-                          imgH: Dimensions.height25,
-                          imgW: Dimensions.width25),
-                    ],
-                  ),
+                  PostBottom(index: index),
                   SizedBox(height: Dimensions.height5,),
                   SmallText(name: postProvider[index]!.likes?.length == 0? '0 Likes' : postProvider[index]!.likes!.length.toString(), bold: true
                   ),
