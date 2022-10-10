@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:insta_project/resources/storage_methods.dart';
+import 'package:insta_project/screens/create_post/model/comment_model.dart';
 import 'package:insta_project/screens/create_post/model/post_model.dart';
 import 'package:insta_project/screens/create_post/res/post_storage.dart';
 import 'package:photo_manager/photo_manager.dart';
@@ -111,7 +112,7 @@ class PostProvider with ChangeNotifier{
         dateCreated: DateTime.now(),
         description: desText,
         likes: [],
-        comments: [],
+        comments: CommentModel() as Map<String, dynamic>,
         postId: postuid,
         postImgUrl: postImageUrl,
         profImage:profImage,

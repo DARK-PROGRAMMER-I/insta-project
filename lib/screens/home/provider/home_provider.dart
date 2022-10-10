@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:insta_project/controllers/auth_ctr/authentication.dart';
+import 'package:insta_project/screens/create_post/model/comment_model.dart';
+import 'package:uuid/uuid.dart';
 
 class HomeProvider with ChangeNotifier{
   HomeProvider(){
@@ -49,11 +51,28 @@ class HomeProvider with ChangeNotifier{
   }
 
   postComment({
-   required String postId,
+    required String postId,
+   required String name,
    required String comment,
-   required String userName,
-
+    required String uid,
+   required String profImage,
+   required String dateCreated,
   })async{
+    FirebaseFirestore fire_store = FirebaseFirestore.instance;
+    try{
+      String commentId = Uuid().v1();
+      CommentModel _comment = CommentModel(
+        name: name,
+        commentId: commentId,
+        comment: comment,
+        uid: uid,
+        profImage: profImage,
+        dateCreated: DateTime.now(),
+      );
+      await fire_store.collection('userPosts').doc(postId).collection('comments').doc(commentId).set(_comment.toJson());
 
+    }catch(e){
+
+    }
   }
 }
