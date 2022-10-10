@@ -51,8 +51,14 @@ class _PostCardState extends State<PostCard> {
                   PostHeader(index: index),
                   SizedBox(height: Dimensions.height20,),
                   GestureDetector(
-                    onDoubleTap: (){
+                    onDoubleTap: ()async{
                       homeProvider.getLikeAnimationStatus(true);
+                      await homeProvider.updateLikes(
+                          postId: postProvider[index]!.postId!,
+                          uid: homeProvider.userId!,
+                          likes: postProvider[index]!.likes!
+                      );
+
                     },
                     child: Stack(
                       alignment: Alignment.center,
@@ -82,7 +88,7 @@ class _PostCardState extends State<PostCard> {
                   SizedBox(height: Dimensions.height10,),
                   PostBottom(index: index),
                   SizedBox(height: Dimensions.height5,),
-                  SmallText(name: postProvider[index]!.likes?.length == 0? '0 Likes' : postProvider[index]!.likes!.length.toString(), bold: true
+                  SmallText(name: postProvider[index]!.likes?.length == 0? '0 like' : '${postProvider[index]!.likes!.length.toString()} likes', bold: true
                   ),
                   SizedBox(height: Dimensions.height5,),
                   Row(

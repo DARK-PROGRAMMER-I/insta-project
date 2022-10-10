@@ -29,9 +29,22 @@ class HomeProvider with ChangeNotifier{
     notifyListeners();
   }
 
-  updateLikes({required String postId, required String uid, required List likes}){
+  updateLikes({required String postId, required String uid, required List likes})async{
     FirebaseFirestore fire_store = FirebaseFirestore.instance;
 
+    try{
     // If userId is already present, we need to remove it to remove like.
+      if(likes.contains(userId)){
+        await fire_store.collection('userPosts').doc(postId).update({
+          "likes" : FieldValue.arrayRemove([uid])
+        });
+      }else{
+        await fire_store.collection('userPosts').doc(postId).update({
+          "likes" : FieldValue.arrayUnion([uid])
+        });
+      }
+    }catch(e){
+      print(e.toString());
+    }
   }
 }

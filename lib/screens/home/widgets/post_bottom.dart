@@ -17,16 +17,24 @@ class PostBottom extends StatelessWidget {
           children: [
 
             postProvider![index!]!.likes!.contains(homeProvider.userId) ? SvgImage(
-                ontap: (){
-                  homeProvider.getLikedStatus(false);
+                ontap: ()async{
+                  await homeProvider.updateLikes(
+                      postId: postProvider[index!]!.postId!,
+                      uid: homeProvider.userId!,
+                      likes: postProvider[index!]!.likes!
+                  );
                 },
                 imgPath: 'svgs/heart_inside.svg',
                 imgColor: AppColors.mainWhiteColor,
                 imgH: Dimensions.height25,
                 imgW: Dimensions.width25) :
             SvgImage(
-                ontap: (){
-                  homeProvider.getLikedStatus(true);
+                ontap: ()async{
+                  await homeProvider.updateLikes(
+                      postId: postProvider[index!]!.postId!,
+                      uid: homeProvider.userId!,
+                      likes: postProvider[index!]!.likes!
+                  );
                 },
                 imgPath: 'svgs/like.svg',
                 imgColor: AppColors.mainWhiteColor,
